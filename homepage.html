@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+
+
+
+    <script>
+        $.ajax({
+            url: "https://newsapi.org/v2/top-headlines?country=il&apiKey=a2dadad25d07481ca59b5037b5b63c9d",
+            type: "get",
+            success: function (data) { console.log(data); },
+            error: function (err) { console.log(err) }
+        })
+
+    </script>
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/6.3.3/firebase-app.js"></script>
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#config-web-app -->
+
+    <script>
+        // Your web app's Firebase configuration
+        var firebaseConfig = {
+            apiKey: "AIzaSyDj2Jpo4_pegIuMN5z5fh0XG4gxYaxbaa8",
+            authDomain: "project-web-telhai-2019.firebaseapp.com",
+            databaseURL: "https://project-web-telhai-2019.firebaseio.com",
+            projectId: "project-web-telhai-2019",
+            storageBucket: "",
+            messagingSenderId: "508106841948",
+            appId: "1:508106841948:web:ad6ea487daa3eadc"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+    </script>
+</body>
+
+</html>
