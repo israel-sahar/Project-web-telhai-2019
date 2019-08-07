@@ -34,6 +34,15 @@ $(document).ready(function () {
             $('#SignUpMsg').html($('#SignUpMsg').html() + "- Please fill your password.<br>")
         }
 
+        if ($('#NickNameInput').val() == '') {
+            if (errors == 0) {
+                $('#SignUpMsg').html("Fail to Sign Up.Reasons:" + "<br>")
+                errors++
+            }
+            $('#SignUpMsg').html($('#SignUpMsg').html() + "- Please choose a nickname.<br>")
+        }
+        /*TODO:check if nickname taken*/
+
         if ($('#inputFile').prop('files').length == 0 || (!$('#inputFile').prop('files')[0].name.includes("jpg") && !$('#inputFile').prop('files')[0].name.includes("jpeg"))) {
             if (errors == 0) {
                 $('#SignUpMsg').html("Fail to Sign Up.Reasons:" + "<br>")
@@ -43,15 +52,31 @@ $(document).ready(function () {
         }
         if (errors == 0) {
             firebase.auth().createUserWithEmailAndPassword($('#emailSignUpInput').val(), $('#passwordSignUpInput').val()).then(function (params) {
-                $('#SignUpDiv').slideToggle()
                 var user = firebase.auth().currentUser;
+                console.log(user)
                 user.updateProfile({
-                    displayName: $('#firstNameInput').val() + " " + $('#familyNameInput').val()
+                    displayName: $('#NickNameInput').val()
+
                 }).then(function () {
-                    $('#shalomMsg').html("<b>" + user.displayName + "</b>" + "  ,שלום")
-                    $('#LogInDiv').hide()
-                    $('#chooseSection').hide()
-                    $('#choosePic').show()
+                    var storageRef = firebase.storage().ref();
+                    var name = storageRef.child("userimages/" + new Date().getTime() + ".jpg");
+
+                    name.put($('#inputFile').prop('files')[0]).then(function (snap) {
+
+                        name.getDownloadURL().then(function (url) {
+                            var user = firebase.auth().currentUser;
+                            user.updateProfile({
+                                photoURL: url
+                            }).then(function () {
+                                //TODO:after sign up
+                            }).catch(function (error) {
+                                // An error happened.
+                            });
+
+
+                        }).catch(function (err) { console.log(err); });
+
+                    }).catch(function (err) { console.log(err); });
                 }).catch(function (error) {
                     // An error happened.
                 });
