@@ -1,29 +1,37 @@
 $(document).ready(function () {
-    nicknamesRef = firebase.database().ref().child('nicknames')
-
+    databaseRef = firebase.database().ref()
 
     $("#NickNameInput").change(function () {
+
+        isValidnickname($("#NickNameInput").val())
+
+    })
+
+    function isValidnickname(nickname) {
         $("#NickNameInput").removeClass("border-danger")
         $("#NickNameInput").removeClass("border-success")
         $('#taken').html("")
         var flag = 0
-        tempNick = $("#NickNameInput").val()
-
+        nicknamesRef = databaseRef.child('nicknames')
         nicknamesRef.once('value').then(function (snapshot) {
             if (snapshot.val() != null) {
                 snapshot.forEach(function (childSnapshot) {
-                    if (childSnapshot.val() == tempNick) {
+                    if (childSnapshot.val() == nickname) {
                         $("#NickNameInput").addClass("border-danger")
                         $('#taken').html("<b>taken</b>")
+                        flag = 1
                     }
                 })
             }
         }).then(function () {
-            if (flag == 0) $("#NickNameInput").addClass("border-success")
+            if (flag == 0) {
+                $("#NickNameInput").addClass("border-success")
+
+            }
 
         });
-    })
-
+        return !flag
+    }
     $('#SignUpButton').click(function () {
         var errors = 0
         $('#SignUpMsg').text('')
@@ -74,7 +82,7 @@ $(document).ready(function () {
         }
         else {
             /*check if nickname taken*/
-            if ($('#taken').text() != "") {
+            if (!isValidnickname($("#NickNameInput").val())) {
                 if (errors == 0) {
                     $('#SignUpMsg').html("Fail to Sign Up.Reasons:" + "<br>")
                     errors++
@@ -99,31 +107,32 @@ $(document).ready(function () {
         /*add user to database*/
         firebase.auth().createUserWithEmailAndPassword($('#emailSignUpInput').val(), $('#passwordSignUpInput').val()).then(function (params) {
             var user = firebase.auth().currentUser;
-
             var pushnickname = nicknamesRef.push();
-            node.set($('#NickNameInput').val());
-
-            usersRef = firebase.database().ref().child('users/' + user.uid)
+            pushnickname.set($('#NickNameInput').val());
+            usersRef = databaseRef.child('users/' + user.uid)
             var pushuser = usersRef.push();
-            node.set({
+            pushuser.set({
                 FirstName: $('#firstNameInput').val(),
                 familyName: $('#familyNameInput').val(),
                 nickName: $('#NickNameInput').val(),
-                Gender: $('input[sex]:checked').val(),
-                BirthDay: $('#BirthInput').val()
+                Gender: $('input:radio[name=sex]:checked').val(),
+                BirthDay: $('#BirthInput').val(),
+                favorites: "null"
             });
+
 
             user.updateProfile({
                 displayName: $('#NickNameInput').val()
 
             }).then(function () {
+
                 var storageRef = firebase.storage().ref();
-                var name = storageRef.child("userimages/" + new Date().getTime() + ".jpg");
+
+                var name = storageRef.child("userimages/" + user.uid + ".jpg");
 
                 name.put($('#inputFile').prop('files')[0]).then(function (snap) {
 
                     name.getDownloadURL().then(function (url) {
-                        console.log(url)
                         var user = firebase.auth().currentUser;
                         user.updateProfile({
                             photoURL: url
@@ -131,6 +140,7 @@ $(document).ready(function () {
 
                             //TODO:after sign up
                         }).catch(function (error) {
+
                             // An error happened.
                         });
 
@@ -143,14 +153,14 @@ $(document).ready(function () {
             });
 
         }).catch(function (error) {
-            $('#SignUpMsg').text(error.errorMsg)
+            $('#SignUpMsg').text(error)
         });
 
 
     })
 
-    $("#inputFile").change(function (e) {
 
+    $("#inputFile").change(function (e) {
         $(".custom-file-label").text($('#inputFile').prop('files')[0].name.slice(0, 25))
     });
 })
