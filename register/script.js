@@ -1,6 +1,7 @@
 $(document).ready(function () {
     databaseRef = firebase.database().ref()
 
+
     $("#NickNameInput").change(function () {
 
         isValidnickname($("#NickNameInput").val())
@@ -92,16 +93,6 @@ $(document).ready(function () {
         }
 
         //TODO - check birthday
-
-
-        /*check photo*/
-        if ($('#inputFile').prop('files').length == 0 || (!$('#inputFile').prop('files')[0].name.includes("jpg") && !$('#inputFile').prop('files')[0].name.includes("jpeg"))) {
-            if (errors == 0) {
-                $('#SignUpMsg').html("Fail to Sign Up.Reasons:" + "<br>")
-                errors++
-            }
-            $('#SignUpMsg').html($('#SignUpMsg').html() + "- Please Choose picture end with JPG.<br>")
-        }
         if (errors != 0) return;
 
         /*add user to database*/
@@ -117,37 +108,17 @@ $(document).ready(function () {
                 nickName: $('#NickNameInput').val(),
                 Gender: $('input:radio[name=sex]:checked').val(),
                 BirthDay: $('#BirthInput').val(),
+                Country: $("#countrySelect").val(),
                 favorites: "null"
             });
 
 
             user.updateProfile({
-                displayName: $('#NickNameInput').val()
+                displayName: $('#NickNameInput').val(),
+                photoURL: "https://api.adorable.io/avatars/50/" + user.email + ".io.png"
 
             }).then(function () {
-
-                var storageRef = firebase.storage().ref();
-
-                var name = storageRef.child("userimages/" + user.uid + ".jpg");
-
-                name.put($('#inputFile').prop('files')[0]).then(function (snap) {
-
-                    name.getDownloadURL().then(function (url) {
-                        var user = firebase.auth().currentUser;
-                        user.updateProfile({
-                            photoURL: url
-                        }).then(function () {
-
-                            //TODO:after sign up
-                        }).catch(function (error) {
-
-                            // An error happened.
-                        });
-
-
-                    }).catch(function (err) { console.log(err); });
-
-                }).catch(function (err) { console.log(err); });
+                /*TODO*/
             }).catch(function (error) {
                 // An error happened.
             });
@@ -158,9 +129,4 @@ $(document).ready(function () {
 
 
     })
-
-
-    $("#inputFile").change(function (e) {
-        $(".custom-file-label").text($('#inputFile').prop('files')[0].name.slice(0, 25))
-    });
 })
