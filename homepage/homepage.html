@@ -228,139 +228,143 @@
                 </div>
                 <div class="col-3 pt-4" style="height: 100px;">
                     <!--Login & Register Div-->
-                    <nav class="navbar navbar-expand-md navbar-light" id="LoginRegDiv" style="">
-
-                        <div id="navbarNav">
+                    <nav class="navbar navbar-expand-md navbar-light" style="display: none" id="LoginRegDiv">
+                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <div class="collapse navbar-collapse" id="navbarNav">
                             <ul class="navbar-nav">
-                                <li class="nav-item inlineItems">
+                                <li class="nav-item">
                                     <a id="loginBtn" class="nav-link" href="#">Login</a>
                                 </li>
-                                <li class="nav-item inlineItems">
+                                <li class="nav-item">
                                     <a class="nav-link" href="../register/register.html">Register</a>
                                 </li>
                             </ul>
                         </div>
                     </nav>
                     <!--END - LOGIN & REGISTER DIV-->
-
-
                     <!--LOGIN DIV-->
                     <nav class="navbar navbar-light bg-light"
                         style="height: 140px;width: 360px;display: none;z-index: 1; border-style: solid;border-radius: 20px;border-width: 2px"
                         id="LoginNav">
                         <div class="input-group  container-fluid">
                             <div class="row">
-                                <input type="text" class=" col-4 form-control mr-2" placeholder="Email"
+                                <input id="emailInput" type="text" class=" col-4 form-control mr-2" placeholder="Email"
                                     aria-label="Username" aria-describedby="basic-addon1" style="font-size: 90%">
-                                <input type="password" class="col-4 form-control" placeholder="Password"
-                                    aria-label="Username" aria-describedby="basic-addon1" style="font-size: 90%">
-                                <button class="ml-2 btn col-3 btn-outline-success my-2 my-sm-0"
+                                <input id="passwordInput" type="password" class="col-4 form-control"
+                                    placeholder="Password" aria-label="Username" aria-describedby="basic-addon1"
+                                    style="font-size: 90%">
+                                <button id="log" class="ml-2 btn col-3 btn-outline-success my-2 my-sm-0"
                                     type="submit">Login</button>
                             </div>
                             <div class="row mt-2" style="font-size: 80%"><a href="http://">Forgot Password?</a>
-
-                                <a href="http://"><img class="img-fluid"
-                                        style="height:40px ;width:150px ;position: absolute;right: 50px;;"
-                                        src="https://i.stack.imgur.com/oL5c2.png" alt=""></a>
                             </div>
                         </div>
                     </nav>
                     <!--END - LOGIN DIV-->
 
                     <!--USER-CONNECTED DIV-->
-                    <div class="container-fluid" style="display: none" id="diivvvvv">
+                    <div class="container-fluid" style="display: none" id="USER-CONNECTED-DIV">
+                        <div class="row">
+                            <img id="img" src="" alt="" style="height: 50px;width:50px;border-radius: 50px">
+                            <p id="name" class="pt-3 pl-3"></p>
+
+                        </div>
 
 
-
-                        <!--<p id="name"></p>
-                    <img id="img" src="" alt="" style="height: 100px;width:100px;border-radius: 20px">
-                    <a id="link" href="">המועדפים שלך</a>*/
-                    -->
+                        <div class="row"><a id="link" href="">Favorites</a> |
+                            <a id="link" href="">My Profile</a> |
+                            <button id="SignOutBtn" type="button" class="btn btn-danger">Sign
+                                Out</button>
+                        </div>
                     </div>
                     <!--END - USER-CONNECTED DIV-->
                 </div>
             </div>
         </div>
+    </div>
 
-        <!--******************************the_news_cards************************************************************************-->
-        <div class="container">
-            <div class="jumbotron">
+    <!--******************************the_news_cards************************************************************************-->
+    <div class="container mt-5">
+        <div class="jumbotron">
 
-                <!--******************************Entertainment section************************************************************************-->
-                <h2>Entertainment:</h2>
-                <div class="row">
-                    <div class="col-sm-4">
+            <!--******************************Entertainment section************************************************************************-->
+            <h2>Entertainment:</h2>
+            <div class="row">
+                <div class="col-sm-4">
 
-                    </div>
-                    <div class="col-sm-4">
-
-                    </div>
-                    <div class="col-sm-4">
-
-                    </div>
                 </div>
-                <!--******************************Health section************************************************************************-->
-                <h2>Health:</h2>
-                <div class="row">
-                    <div class="col-sm-4"></div>
-                    <div class="col-sm-4"></div>
-                    <div class="col-sm-4"></div>
-                </div>
+                <div class="col-sm-4">
 
-                <!--******************************Science section************************************************************************-->
-                <h2>Science:</h2>
-                <div class="row">
-                    <div class="col-sm-4"></div>
-                    <div class="col-sm-4"></div>
-                    <div class="col-sm-4"></div>
                 </div>
+                <div class="col-sm-4">
 
-                <!--******************************sports section************************************************************************-->
-                <h2>Sports:</h2>
-                <div class="row">
-                    <div class="col-sm-4"></div>
-                    <div class="col-sm-4"></div>
-                    <div class="col-sm-4"></div>
-                </div>
-
-                <!--******************************Technology section************************************************************************-->
-                <h2>Technology:</h2>
-                <div class="row">
-                    <div class="col-sm-4"></div>
-                    <div class="col-sm-4"></div>
-                    <div class="col-sm-4"></div>
-                </div>
-
-                <!--******************************Business section************************************************************************-->
-                <h2>Business:</h2>
-                <div class="row">
-                    <div class="col-sm-4"></div>
-                    <div class="col-sm-4"></div>
-                    <div class="col-sm-4"></div>
                 </div>
             </div>
+            <!--******************************Health section************************************************************************-->
+            <h2>Health:</h2>
+            <div class="row">
+                <div class="col-sm-4"></div>
+                <div class="col-sm-4"></div>
+                <div class="col-sm-4"></div>
+            </div>
+
+            <!--******************************Science section************************************************************************-->
+            <h2>Science:</h2>
+            <div class="row">
+                <div class="col-sm-4"></div>
+                <div class="col-sm-4"></div>
+                <div class="col-sm-4"></div>
+            </div>
+
+            <!--******************************sports section************************************************************************-->
+            <h2>Sports:</h2>
+            <div class="row">
+                <div class="col-sm-4"></div>
+                <div class="col-sm-4"></div>
+                <div class="col-sm-4"></div>
+            </div>
+
+            <!--******************************Technology section************************************************************************-->
+            <h2>Technology:</h2>
+            <div class="row">
+                <div class="col-sm-4"></div>
+                <div class="col-sm-4"></div>
+                <div class="col-sm-4"></div>
+            </div>
+
+            <!--******************************Business section************************************************************************-->
+            <h2>Business:</h2>
+            <div class="row">
+                <div class="col-sm-4"></div>
+                <div class="col-sm-4"></div>
+                <div class="col-sm-4"></div>
+            </div>
         </div>
-        <!---------------------------------------------------------------------------------------------------------------------->
+    </div>
+    <!---------------------------------------------------------------------------------------------------------------------->
 
-        <script src="https://www.gstatic.com/firebasejs/6.2.4/firebase.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/6.2.4/firebase.js"></script>
 
-        <script>
-            // Your web app's Firebase configuration
-            var firebaseConfig = {
-                apiKey: "AIzaSyDj2Jpo4_pegIuMN5z5fh0XG4gxYaxbaa8",
-                authDomain: "project-web-telhai-2019.firebaseapp.com",
-                databaseURL: "https://project-web-telhai-2019.firebaseio.com",
-                projectId: "project-web-telhai-2019",
-                storageBucket: "project-web-telhai-2019.appspot.com",
-                messagingSenderId: "508106841948",
-                appId: "1:508106841948:web:ad6ea487daa3eadc"
-            };
-            // Initialize Firebase
-            firebase.initializeApp(firebaseConfig);
-        </script>
+    <script>
+        // Your web app's Firebase configuration
+        var firebaseConfig = {
+            apiKey: "AIzaSyDj2Jpo4_pegIuMN5z5fh0XG4gxYaxbaa8",
+            authDomain: "project-web-telhai-2019.firebaseapp.com",
+            databaseURL: "https://project-web-telhai-2019.firebaseio.com",
+            projectId: "project-web-telhai-2019",
+            storageBucket: "project-web-telhai-2019.appspot.com",
+            messagingSenderId: "508106841948",
+            appId: "1:508106841948:web:ad6ea487daa3eadc"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+    </script>
 
-        <script src="script.js"></script>
-        <script src="../general-script.js"></script>
+    <script src="script.js"></script>
+    <script src="../general-script.js"></script>
 
     </div>
 
