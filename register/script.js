@@ -114,6 +114,15 @@ $(document).ready(function () {
         /*add user to database*/
         firebase.auth().createUserWithEmailAndPassword($('#emailSignUpInput').val(), $('#passwordSignUpInput').val()).then(function (params) {
             var user = firebase.auth().currentUser;
+            user.updateProfile({
+                displayName: $('#NickNameInput').val(),
+                photoURL: "https://api.adorable.io/avatars/50/" + user.email + ".io.png"
+
+            }).then(function () {
+                /*TODO*/
+            }).catch(function (error) {
+                // An error happened.
+            });
             var pushnickname = nicknamesRef.push();
             pushnickname.set($('#NickNameInput').val());
             usersRef = databaseRef.child('users/' + user.uid)
@@ -125,15 +134,6 @@ $(document).ready(function () {
                 BirthDay: $('#BirthInput').val(),
                 Country: $("#countrySelect").val(),
                 favorites: "null"
-            });
-            user.updateProfile({
-                displayName: $('#NickNameInput').val(),
-                photoURL: "https://api.adorable.io/avatars/50/" + user.email + ".io.png"
-
-            }).then(function () {
-                /*TODO*/
-            }).catch(function (error) {
-                // An error happened.
             });
 
         }).catch(function (error) {
