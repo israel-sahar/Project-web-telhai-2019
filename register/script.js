@@ -92,6 +92,26 @@ $(document).ready(function () {
             }
         }
 
+        /*check birthday*/
+        if ($('#BirthInput').val() == '') {
+            if (errors == 0) {
+                $('#SignUpMsg').html("Fail to Sign Up.Reasons:" + "<br>")
+                errors++
+            }
+            $('#SignUpMsg').html($('#SignUpMsg').html() + "- Please choose a BirthDay.<br>")
+        }
+        else {
+            var now = new Date()
+            var birthDay = new Date($('#BirthInput').val())
+            if (birthDay > now) {
+                if (errors == 0) {
+                    $('#SignUpMsg').html("Fail to Sign Up.Reasons:" + "<br>")
+                    errors++
+                }
+                $('#SignUpMsg').html($('#SignUpMsg').html() + "- Choose valid birthday.<br>")
+            }
+        }
+
         //TODO - check birthday
         if (errors != 0) return;
 
@@ -101,8 +121,7 @@ $(document).ready(function () {
             var pushnickname = nicknamesRef.push();
             pushnickname.set($('#NickNameInput').val());
             usersRef = databaseRef.child('users/' + user.uid)
-            var pushuser = usersRef.push();
-            pushuser.set({
+            usersRef.set({
                 FirstName: $('#firstNameInput').val(),
                 familyName: $('#familyNameInput').val(),
                 nickName: $('#NickNameInput').val(),

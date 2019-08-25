@@ -1,6 +1,9 @@
 $(document).ready(function () {
     var CurrentPage = document.URL.match(/.*\/(.*)$/)[1]
     firebase.auth().onAuthStateChanged(function (user) {
+        if (CurrentPage == "profile.html" || CurrentPage == "profile.html#") {
+            return;
+        }
         if (user) {
             var displayName = user.displayName;
             var email = user.email;
@@ -18,10 +21,12 @@ $(document).ready(function () {
             $("#img").attr('src', photoURL)
             $("#USER-CONNECTED-DIV").show()
         }
-        else
-            // User is signed out.
-            // ...
+        else {
             $("#LoginRegDiv").show()
+        }
+        // User is signed out.
+        // ...
+
 
     })
 
@@ -34,8 +39,10 @@ $(document).ready(function () {
     $("#log").click(function () {
         $('#emailInput').removeClass('border-danger')
         $('#passwordInput').removeClass('border-danger')
-        firebase.auth().signInWithEmailAndPassword($('#emailInput').val(), $('#passwordInput').val()).catch(function (error) {
-            console.log(error)
+        firebase.auth().signInWithEmailAndPassword($('#emailInput').val(), $('#passwordInput').val()).then(function () {
+            location.href = '../homepage/homepage.html'
+
+        }).catch(function (error) {
             if (error.code == 'auth/invalid-email') {
                 $('#emailInput').addClass('border-danger')
             }
