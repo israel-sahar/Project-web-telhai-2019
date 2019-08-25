@@ -1,11 +1,8 @@
 $(document).ready(function () {
     databaseRef = firebase.database().ref()
 
-
     $("#NickNameInput").change(function () {
-
         isValidnickname($("#NickNameInput").val())
-
     })
 
     function isValidnickname(nickname) {
@@ -29,7 +26,6 @@ $(document).ready(function () {
                 $("#NickNameInput").addClass("border-success")
 
             }
-
         });
         return !flag
     }
@@ -130,8 +126,6 @@ $(document).ready(function () {
                 Country: $("#countrySelect").val(),
                 favorites: "null"
             });
-
-
             user.updateProfile({
                 displayName: $('#NickNameInput').val(),
                 photoURL: "https://api.adorable.io/avatars/50/" + user.email + ".io.png"
