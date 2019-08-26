@@ -14,7 +14,12 @@ $(document).ready(function ($) {
 		["Ukraine", "ua"]
 	])
 	var Categories = ["entertainment", "health", "science", "sports", "technology", "business"]
-
+	var CategoriesPhotos = ["../categories-photos/entertainment.jpeg", "../categories-photos/health.jpg",
+		"../categories-photos/science.jpg",
+		"../categories-photos/sports.jpg",
+		"../categories-photos/technology.jpg",
+		"../categories-photos/business.jpg"
+	]
 	$('.card__share > a').on('click', function (e) {
 		e.preventDefault() // prevent default action - hash doesn't appear in url
 		$(this).parent().find('div').toggleClass('card__social--active');
@@ -61,19 +66,25 @@ $(document).ready(function ($) {
 				success: function (data) {
 
 					for (j = 1; j <= 3; j++) {
-						console.log(data.articles[j])
-						console.log(data.articles[j].urlToImage)
-						$("#" + Categories[cat_i] + "-" + j + "-img").attr("src", data.articles[j].urlToImage);
-						console.log(data.articles[j].publishedAt.slice(0, 10))
+						if (data.articles[j].urlToImage == null) {
+							$("#" + Categories[cat_i] + "-" + j + "-img").attr("src", CategoriesPhotos[cat_i]);
+						}
+						else
+							$("#" + Categories[cat_i] + "-" + j + "-img").attr("src", data.articles[j].urlToImage);
 						$("#" + Categories[cat_i] + "-" + j + "-date").text(data.articles[j].publishedAt.slice(0, 10));
-						console.log(data.articles[j].title)
 						$("#" + Categories[cat_i] + "-" + j + "-header").text(data.articles[j].title);
-						console.log(data.articles[j].description)
-						$("#" + Categories[cat_i] + "-" + j + "-description").text(data.articles[j].description);
-						console.log(data.articles[j].author)
-						$("#" + Categories[cat_i] + "-" + j + "-author").text(data.articles[j].author);
+						if (data.articles[j].description == null) {
+							$("#" + Categories[cat_i] + "-" + j + "-description").text("No Description.");
+						}
+						else
+							$("#" + Categories[cat_i] + "-" + j + "-description").text(data.articles[j].description);
+						if (data.articles[j].author == null) {
+							$("#" + Categories[cat_i] + "-" + j + "-author").text("Anonymous");
+						}
+						else
+							$("#" + Categories[cat_i] + "-" + j + "-author").text(data.articles[j].author);
 					}
-					console.log("**************")
+
 				},
 				error: function (err) {
 					console.error();
