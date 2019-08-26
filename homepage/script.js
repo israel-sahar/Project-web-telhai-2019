@@ -55,6 +55,7 @@ $(document).ready(function ($) {
 
 		}
 		else {
+			$(".favoriteClick").hide()
 			fillPosts("il")
 			$("#LoginRegDiv").show()
 		}
