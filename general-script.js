@@ -5,7 +5,6 @@ $(document).ready(function () {
             return;
         }
         if (user) {
-            console.log(user)
             var displayName = user.displayName;
             var email = user.email;
             var emailVerified = user.emailVerified;
