@@ -227,3 +227,9 @@ h2 {
 	.googleplus:hover {
 		color: #eee;
 	}
+
+#viewMoreLink{
+	margin-bottom: 75px;
+	margin-left: 17px;
+	margin-top: 0px;
+}
