@@ -15,8 +15,8 @@
 /**
  * Basics Styles
  */
-html {
-	font-size: 90%;
+html{
+	font-size: 62.5%;
 }
 body {
 	background-color: #eee;
@@ -40,11 +40,16 @@ h2 {
 	margin-bottom: 1.6rem;
 }
 
+#navBarTop{
+	font-size: 16px;
+}
 .wrapper {
 	max-width: 400px;
 	margin: 50px auto;
 	padding-left: 1em;
 	padding-right: 1em;
+	min-height: 500px;
+
 }
 
 /**
@@ -86,9 +91,11 @@ h2 {
 .card__image {
 	min-height: 100px;
 	background-color: #eee;
+
 }
 	.card__image img {
 		width: 100%;
+		/*max-height: 300px;*/
 		max-width: 100%;
 		display: block;
 	}
