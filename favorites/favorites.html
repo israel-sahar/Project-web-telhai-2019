@@ -4,292 +4,326 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../general-style.css">
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../general-style.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
 
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Global News | Latest & Current News - Favorites</title>
+    <title>Global News | Latest & Current News - HomePage</title>
 </head>
 
-<body class="container">
+<body>
 
-    <!--NAVBAR TOP START-->
-    <nav class="navbar navbar-expand-md fixed-top navbar-dark bg-dark">
-        <a class="navbar-brand" href="#">Home</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02"
-            aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
-            <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-                <li class="nav-item active">
-
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Entertainment</a>
-                </li>
-
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Health</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Science</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Sports</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Technology</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Business</a>
-                </li>
-
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
-                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Countries
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <table>
-                            <tr>
-                                <th>
-                                    <h5>A-H</h5>
-                                </th>
-                                <h5>
-                                    <th>I-P</th>
-                                </h5>
-
-                            </tr>
-                            <tr>
-                                <td><a class="dropdown-item" href="#">
-                                        <img class="img-list" src="https://newsapi.org/images/flags/ar.svg" alt="">
-                                        <h6>Argentina</h6>
-                                    </a></td>
-                                <td><a class="dropdown-item" href="#">
-                                        <img class="img-list" src="https://newsapi.org/images/flags/in.svg" alt="">
-                                        <h6>India</h6>
-                                    </a></td>
-                            </tr>
-                            <tr>
-                                <td><a class="dropdown-item" href="#">
-                                        <img class="img-list" src="https://newsapi.org/images/flags/au.svg" alt="">
-                                        <h6>Australia</h6>
-                                    </a></td>
-                                <td><a class="dropdown-item" href="#">
-                                        <img class="img-list" src="https://newsapi.org/images/flags/ie.svg" alt="">
-                                        <h6>Ireland</h6>
-                                    </a></td>
-                            </tr>
-                            <tr>
-                                <td><a class="dropdown-item" href="#">
-                                        <img class="img-list" src="https://newsapi.org/images/flags/at.svg" alt="">
-                                        <h6>Austria</h6>
-                                    </a></td>
-                                <td><a class="dropdown-item" href="#">
-                                        <img class="img-list" src="https://newsapi.org/images/flags/il.svg" alt="">
-                                        <h6>Israel</h6>
-                                    </a></td>
-                            </tr>
-
-                            <tr>
-                                <th>Q-S</th>
-                                <th>T-Z</th>
-
-                            </tr>
-                            <tr>
-                                <td><a class="dropdown-item" href="#">
-                                        <img class="img-list" src="https://newsapi.org/images/flags/ro.svg" alt="">
-                                        <h6>Romania</h6>
-                                    </a></td>
-                                <td><a class="dropdown-item" href="#">
-                                        <img class="img-list" src="https://newsapi.org/images/flags/tr.svg" alt="">
-                                        <h6>Turkey</h6>
-                                    </a></td>
-                            </tr>
-                            <tr>
-                                <td><a class="dropdown-item" href="#">
-                                        <img class="img-list" src="https://newsapi.org/images/flags/ru.svg" alt="">
-                                        <h6>Russia</h6>
-                                    </a></td>
-                                <td><a class="dropdown-item" href="#">
-                                        <img class="img-list" src="https://newsapi.org/images/flags/ae.svg" alt="">
-                                        <h6>UAE</h6>
-                                    </a></td>
-                            </tr>
-                            <tr>
-                                <td><a class="dropdown-item" href="#">
-                                        <img class="img-list" src="https://newsapi.org/images/flags/sa.svg" alt="">
-                                        <h6>Saudi Arabia</h6>
-                                    </a></td>
-                                <td><a class="dropdown-item" href="#">
-                                        <img class="img-list" src="https://newsapi.org/images/flags/ua.svg" alt="">
-                                        <h6>Ukraine</h6>
-                                    </a></td>
-                            </tr>
-                        </table>
-                    </div>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
-                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Channeles
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <table>
-                            <tr>
-                                <td>
-                                    <a class="dropdown-item" href="#">
-                                        <img class="img-list" src="https://www.dailymail.co.uk/apple-touch-icon.png"
-                                            alt="">
-                                        <h6>Daily Mail</h6>
-                                    </a></td>
-                                <td><a class="dropdown-item" href="#">
-                                        <img class="img-list"
-                                            src="https://www.buzzfeed.com/static-assets/img/touch-icon-ios_120.208a0e329cd6e8d831b21ae17fb6aabb.png"
-                                            alt="">
-                                        <h6>Buzzfeed</h6>
-                                    </a></td>
-                                <td><a class="dropdown-item" href="#">
-                                        <img class="img-list"
-                                            src="https://a.espncdn.com/wireless/mw5/r1/images/bookmark-icons-v2/espn-icon-120x120.png"
-                                            alt="">
-                                        <h6>ESPN</h6>
-                                    </a></td>
-                            </tr>
-                            <tr>
-                                <td><a class="dropdown-item" href="#">
-                                        <img class="img-list"
-                                            src="https://s.abcnews.com/assets/images/apple-touch-icons/touch-icon-ipad-retina.png"
-                                            alt="">
-                                        <h6>ABC News</h6>
-                                    </a></td>
-                                <td><a class="dropdown-item" href="#">
-                                        <img class="img-list" src="https://www.ign.com/apple-touch-icon-precomposed.png"
-                                            alt="">
-                                        <h6>IGN</h6>
-                                    </a></td>
-                                <td><a class="dropdown-item" href="#">
-                                        <img class="img-list" src="http://www.mtv.com/apple-touch-icon-precomposed.png"
-                                            alt="">
-                                        <h6>MTV News </h6>
-                                    </a></td>
-                            </tr>
-                            <tr>
-                                <td><a class="dropdown-item" href="#">
-                                        <img class="img-list"
-                                            src="https://nodeassets.nbcnews.com/cdnassets/projects/ramen/favicon/msnbc/all-other-sizes-PNG.ico/apple-icon-120x120.png"
-                                            alt="">
-                                        <h6>MSNBC</h6>
-                                    </a></td>
-                                <td><a class="dropdown-item" href="#">
-                                        <img class="img-list"
-                                            src="https://www.nationalreview.com/wp-content/themes/national-review/static/images/favicons/apple-icon-120x120.png"
-                                            alt="">
-                                        <h6>National Review</h6>
-                                    </a></td>
-                            </tr>
+    <div class="container" id="navBarTop">
 
 
-                        </table>
-                    </div>
-                </li>
+        <nav class="navbar navbar-expand-md fixed-top navbar-dark bg-dark">
+            <a class="navbar-brand" href="#">Home</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02"
+                aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+                <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                    <li class="nav-item active">
+
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Entertainment</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Health</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Science</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Sports</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Technology</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Business</a>
+                    </li>
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Countries
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <table>
+                                <tr>
+                                    <th>
+                                        <h5>A-H</h5>
+                                    </th>
+                                    <h5>
+                                        <th>I-P</th>
+                                    </h5>
+
+                                </tr>
+                                <tr>
+                                    <td><a class="dropdown-item" href="#">
+                                            <img class="img-list" src="https://newsapi.org/images/flags/ar.svg" alt="">
+                                            <h6>Argentina</h6>
+                                        </a></td>
+                                    <td><a class="dropdown-item" href="#">
+                                            <img class="img-list" src="https://newsapi.org/images/flags/in.svg" alt="">
+                                            <h6>India</h6>
+                                        </a></td>
+                                </tr>
+                                <tr>
+                                    <td><a class="dropdown-item" href="#">
+                                            <img class="img-list" src="https://newsapi.org/images/flags/au.svg" alt="">
+                                            <h6>Australia</h6>
+                                        </a></td>
+                                    <td><a class="dropdown-item" href="#">
+                                            <img class="img-list" src="https://newsapi.org/images/flags/ie.svg" alt="">
+                                            <h6>Ireland</h6>
+                                        </a></td>
+                                </tr>
+                                <tr>
+                                    <td><a class="dropdown-item" href="#">
+                                            <img class="img-list" src="https://newsapi.org/images/flags/at.svg" alt="">
+                                            <h6>Austria</h6>
+                                        </a></td>
+                                    <td><a class="dropdown-item" href="#">
+                                            <img class="img-list" src="https://newsapi.org/images/flags/il.svg" alt="">
+                                            <h6>Israel</h6>
+                                        </a></td>
+                                </tr>
+
+                                <tr>
+                                    <th>Q-S</th>
+                                    <th>T-Z</th>
+
+                                </tr>
+                                <tr>
+                                    <td><a class="dropdown-item" href="#">
+                                            <img class="img-list" src="https://newsapi.org/images/flags/ro.svg" alt="">
+                                            <h6>Romania</h6>
+                                        </a></td>
+                                    <td><a class="dropdown-item" href="#">
+                                            <img class="img-list" src="https://newsapi.org/images/flags/tr.svg" alt="">
+                                            <h6>Turkey</h6>
+                                        </a></td>
+                                </tr>
+                                <tr>
+                                    <td><a class="dropdown-item" href="#">
+                                            <img class="img-list" src="https://newsapi.org/images/flags/ru.svg" alt="">
+                                            <h6>Russia</h6>
+                                        </a></td>
+                                    <td><a class="dropdown-item" href="#">
+                                            <img class="img-list" src="https://newsapi.org/images/flags/ae.svg" alt="">
+                                            <h6>UAE</h6>
+                                        </a></td>
+                                </tr>
+                                <tr>
+                                    <td><a class="dropdown-item" href="#">
+                                            <img class="img-list" src="https://newsapi.org/images/flags/sa.svg" alt="">
+                                            <h6>Saudi Arabia</h6>
+                                        </a></td>
+                                    <td><a class="dropdown-item" href="#">
+                                            <img class="img-list" src="https://newsapi.org/images/flags/ua.svg" alt="">
+                                            <h6>Ukraine</h6>
+                                        </a></td>
+                                </tr>
+                            </table>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Channeles
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <table>
+                                <tr>
+                                    <td>
+                                        <a class="dropdown-item" href="#">
+                                            <img class="img-list" src="https://www.dailymail.co.uk/apple-touch-icon.png"
+                                                alt="">
+                                            <h6>Daily Mail</h6>
+                                        </a></td>
+                                    <td><a class="dropdown-item" href="#">
+                                            <img class="img-list"
+                                                src="https://www.buzzfeed.com/static-assets/img/touch-icon-ios_120.208a0e329cd6e8d831b21ae17fb6aabb.png"
+                                                alt="">
+                                            <h6>Buzzfeed</h6>
+                                        </a></td>
+                                    <td><a class="dropdown-item" href="#">
+                                            <img class="img-list"
+                                                src="https://a.espncdn.com/wireless/mw5/r1/images/bookmark-icons-v2/espn-icon-120x120.png"
+                                                alt="">
+                                            <h6>ESPN</h6>
+                                        </a></td>
+                                </tr>
+                                <tr>
+                                    <td><a class="dropdown-item" href="#">
+                                            <img class="img-list"
+                                                src="https://s.abcnews.com/assets/images/apple-touch-icons/touch-icon-ipad-retina.png"
+                                                alt="">
+                                            <h6>ABC News</h6>
+                                        </a></td>
+                                    <td><a class="dropdown-item" href="#">
+                                            <img class="img-list"
+                                                src="https://www.ign.com/apple-touch-icon-precomposed.png" alt="">
+                                            <h6>IGN</h6>
+                                        </a></td>
+                                    <td><a class="dropdown-item" href="#">
+                                            <img class="img-list"
+                                                src="http://www.mtv.com/apple-touch-icon-precomposed.png" alt="">
+                                            <h6>MTV News </h6>
+                                        </a></td>
+                                </tr>
+                                <tr>
+                                    <td><a class="dropdown-item" href="#">
+                                            <img class="img-list"
+                                                src="https://nodeassets.nbcnews.com/cdnassets/projects/ramen/favicon/msnbc/all-other-sizes-PNG.ico/apple-icon-120x120.png"
+                                                alt="">
+                                            <h6>MSNBC</h6>
+                                        </a></td>
+                                    <td><a class="dropdown-item" href="#">
+                                            <img class="img-list"
+                                                src="https://www.nationalreview.com/wp-content/themes/national-review/static/images/favicons/apple-icon-120x120.png"
+                                                alt="">
+                                            <h6>National Review</h6>
+                                        </a></td>
+                                </tr>
 
 
-            </ul>
-
-        </div>
-    </nav>
-    <!--NAVBAR TOP END-->
+                            </table>
+                        </div>
+                    </li>
 
 
-    <div class="container">
-        <p>-</p>
-    </div>
-    <div class="container">
-        <p>-</p>
-    </div>
-    <div class="container">
-        <div class="row">
-            <div class="col-9">
-                <a href="../homepage/homepage.html"><img class="mr-2" src="../7631d0c04c227a06508514677df8072e.png"
-                        style="height:100px; width: 100px;float: left;" alt=""></a>
-                <p class="mt-3 mr-2" style="font-size: 20px"><span style="font-size: 30px">Global News </span> | Latest
-                    &
-                    Current
-                    News</p>
+                </ul>
+
             </div>
-            <div class="col-3 pt-4" style="height: 100px;">
-                <!--Login & Register Div-->
-                <nav class="navbar navbar-expand-md navbar-light" style="display: none" id="LoginRegDiv">
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
-                        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-                    <div class="collapse navbar-collapse" id="navbarNav">
-                        <ul class="navbar-nav">
-                            <li class="nav-item">
-                                <a id="loginBtn" class="nav-link" href="#">Login</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="../register/register.html">Register</a>
-                            </li>
-                        </ul>
-                    </div>
-                </nav>
-                <!--END - LOGIN & REGISTER DIV-->
-                <!--LOGIN DIV-->
-                <nav class="navbar navbar-light bg-light"
-                    style="height: 140px;width: 360px;display: none;z-index: 1; border-style: solid;border-radius: 20px;border-width: 2px"
-                    id="LoginNav">
-                    <div class="input-group  container-fluid">
+        </nav>
+
+        <div class="container">
+            <p>-</p>
+        </div>
+        <div class="container">
+            <p>-</p>
+        </div>
+        <div class="container">
+
+
+            <div class="row mt-2">
+                <div class="col-9">
+                    <img class="mr-2" src="../7631d0c04c227a06508514677df8072e.png"
+                        style="height:100px; width: 100px;float: left;" alt="">
+                    <p class="mt-3 mr-2" style="font-size: 20px"><span style="font-size: 30px">Global News </span> |
+                        Latest &
+                        Current
+                        News</p>
+                </div>
+                <div class="col-3 pt-4" style="height: 100px;">
+                    <!--Login & Register Div-->
+                    <nav class="navbar navbar-expand-md navbar-light" style="display: none" id="LoginRegDiv">
+                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <div class="collapse navbar-collapse" id="navbarNav">
+                            <ul class="navbar-nav">
+                                <li class="nav-item">
+                                    <a id="loginBtn" class="nav-link" href="#">Login</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="../register/register.html">Register</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </nav>
+                    <!--END - LOGIN & REGISTER DIV-->
+                    <!--LOGIN DIV-->
+                    <nav class="navbar navbar-light bg-light"
+                        style="height: 140px;width: 360px;display: none;z-index: 1; border-style: solid;border-radius: 20px;border-width: 2px"
+                        id="LoginNav">
+                        <div class="input-group  container-fluid">
+                            <div class="row">
+                                <input id="emailInput" type="text" class=" col-4 form-control mr-2" placeholder="Email"
+                                    aria-label="Username" aria-describedby="basic-addon1" style="font-size: 90%">
+                                <input id="passwordInput" type="password" class="col-4 form-control"
+                                    placeholder="Password" aria-label="Username" aria-describedby="basic-addon1"
+                                    style="font-size: 90%">
+                                <button id="log" class="ml-2 btn col-3 btn-outline-success my-2 my-sm-0"
+                                    type="submit">Login</button>
+                            </div>
+                            <div class="row mt-2" style="font-size: 80%"><a
+                                    href="../resetpassword/resetpassword.html">Forgot Password?</a>
+                            </div>
+                        </div>
+                    </nav>
+                    <!--END - LOGIN DIV-->
+
+                    <!--USER-CONNECTED DIV-->
+                    <div class="container-fluid" style="display: none" id="USER-CONNECTED-DIV">
                         <div class="row">
-                            <input id="emailInput" type="text" class=" col-4 form-control mr-2 groupClick"
-                                placeholder="Email" aria-label="Username" aria-describedby="basic-addon1"
-                                style="font-size: 90%">
-                            <input id="passwordInput" type="password" class="col-4 form-control groupClick"
-                                placeholder="Password" aria-label="Username" aria-describedby="basic-addon1"
-                                style="font-size: 90%">
-                            <button id="log" class="ml-2 btn col-3 btn-outline-success my-2 my-sm-0"
-                                type="submit">Login</button>
+                            <img id="img" src="" alt="" style="height: 50px;width:50px;border-radius: 50px">
+                            <p id="name" class="pt-3 pl-3"></p>
+
                         </div>
-                        <div class="row mt-2" style="font-size: 80%"><a
-                                href="../resetpassword/resetpassword.html">Forgot
-                                Password?</a>
+
+
+                        <div class="row"><a id="link" href="">Favorites</a> |
+                            <a id="link" href="../profile/profile.html">My Profile</a> |
+                            <button id="SignOutBtn" type="button" class="btn btn-danger">Sign
+                                Out</button>
                         </div>
                     </div>
-                </nav>
-                <!--END - LOGIN DIV-->
+                    <!--END - USER-CONNECTED DIV-->
+                </div>
             </div>
         </div>
+    </div>
 
-        <center>
+    <!--******************************the_news_cards************************************************************************-->
 
-        </center>
-        <script src="https://www.gstatic.com/firebasejs/6.2.4/firebase.js"></script>
+    <div class="jumbotron container mt-5 ">
+        <table id="favoritesTable" class="table" style="display: none;">
+            <thead>
+                <th>Your Favorites:</th>
+            </thead>
+            <tbody id="favoritesBody">
 
-        <script>
-            // Your web app's Firebase configuration
-            var firebaseConfig = {
-                apiKey: "AIzaSyDj2Jpo4_pegIuMN5z5fh0XG4gxYaxbaa8",
-                authDomain: "project-web-telhai-2019.firebaseapp.com",
-                databaseURL: "https://project-web-telhai-2019.firebaseio.com",
-                projectId: "project-web-telhai-2019",
-                storageBucket: "project-web-telhai-2019.appspot.com",
-                messagingSenderId: "508106841948",
-                appId: "1:508106841948:web:ad6ea487daa3eadc"
-            };
-            // Initialize Firebase
-            firebase.initializeApp(firebaseConfig);
-        </script>
-        <script src="../general-script.js"></script>
-        <script src="script.js"></script>
+            </tbody>
+        </table>
+    </div>
 
+    <!---------------------------------------------------------------------------------------------------------------------->
+
+    <script src="https://www.gstatic.com/firebasejs/6.2.4/firebase.js"></script>
+
+    <script>
+        // Your web app's Firebase configuration
+        var firebaseConfig = {
+            apiKey: "AIzaSyDj2Jpo4_pegIuMN5z5fh0XG4gxYaxbaa8",
+            authDomain: "project-web-telhai-2019.firebaseapp.com",
+            databaseURL: "https://project-web-telhai-2019.firebaseio.com",
+            projectId: "project-web-telhai-2019",
+            storageBucket: "project-web-telhai-2019.appspot.com",
+            messagingSenderId: "508106841948",
+            appId: "1:508106841948:web:ad6ea487daa3eadc"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+    </script>
+
+    <script src="../general-script.js"></script>
+    <script src="script.js"></script>
+
+
+    </div>
 
 </body>
 
