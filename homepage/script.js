@@ -73,6 +73,7 @@ $(document).ready(function ($) {
 							$("#" + Categories[cat_i] + "-" + j + "-img").attr("src", data.articles[j].urlToImage);
 						$("#" + Categories[cat_i] + "-" + j + "-date").text(data.articles[j].publishedAt.slice(0, 10));
 						$("#" + Categories[cat_i] + "-" + j + "-header").text(data.articles[j].title);
+						$("#" + Categories[cat_i] + "-" + j + "-header").attr('href', data.articles[j].url);
 						if (data.articles[j].description == null) {
 							$("#" + Categories[cat_i] + "-" + j + "-description").text("No Description.");
 						}
