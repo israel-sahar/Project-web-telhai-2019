@@ -58,12 +58,13 @@ $(document).ready(function ($) {
 	function fillPosts(country) {
 		var cat_i
 		for (cat_i = 0; cat_i < Categories.length; cat_i++) {
-			urlFrom = "https://newsapi.org/v2/top-headlines?country=" + country + "&category=" + Categories[cat_i] + "&apiKey=a2dadad25d07481ca59b5037b5b63c9d"
+			urlFrom = "https://newsapi.org/v2/top-headlines?country=" + country + "&category=" + Categories[cat_i] + "&apiKey=32733c433b974e5e87be80d889932a64"
 			$.ajax({
 				url: urlFrom,
 				type: "GET",
 				async: false,
 				success: function (data) {
+					console.log(data);
 
 					for (j = 1; j <= 3; j++) {
 						if (data.articles[j].urlToImage == null) {
@@ -94,4 +95,3 @@ $(document).ready(function ($) {
 		}
 	}
 })
-
