@@ -1,4 +1,5 @@
 $(document).ready(function ($) {
+	var favoritesDatabaseRef
 	var countries = new Map([
 		["Israel", "il"],
 		["Argentina", "ar"],
@@ -20,6 +21,8 @@ $(document).ready(function ($) {
 		"../categories-photos/technology.jpg",
 		"../categories-photos/business.jpg"
 	]
+	var favoritesArray = []
+	var favoriteKeys = []
 	$('.card__share > a').on('click', function (e) {
 		e.preventDefault() // prevent default action - hash doesn't appear in url
 		$(this).parent().find('div').toggleClass('card__social--active');
@@ -41,10 +44,15 @@ $(document).ready(function ($) {
 			$("#img").attr('src', photoURL)
 			$("#USER-CONNECTED-DIV").show()
 			databaseRef = firebase.database().ref().child('users/' + user.uid);
+			favoritesDatabaseRef = firebase.database().ref().child('favorites/' + user.uid);
+
+			updateFavorites()
 			databaseRef.once('value').then(function (snapshot) {
 				var country = countries.get(snapshot.val()['Country'])
 				fillPosts(country)
 			})
+
+
 		}
 		else {
 			fillPosts("il")
@@ -55,6 +63,18 @@ $(document).ready(function ($) {
 
 
 	})
+
+	function updateFavorites() {
+		favoriteKeys = []
+		favoritesArray = []
+		var findex = 0
+		favoritesDatabaseRef.once('value').then(function (snapshot) {
+			snapshot.forEach(function (childSnapshot) {
+				favoriteKeys[findex] = childSnapshot.key
+				favoritesArray[findex++] = childSnapshot.val()['url']
+			})
+		})
+	}
 	function fillPosts(country) {
 		var cat_i
 		for (cat_i = 0; cat_i < Categories.length; cat_i++) {
@@ -64,9 +84,12 @@ $(document).ready(function ($) {
 				type: "GET",
 				async: false,
 				success: function (data) {
-					console.log(data);
+
 
 					for (j = 1; j <= 3; j++) {
+						if (favoritesArray.indexOf(data.articles[j].url) != -1) {
+							$("#" + Categories[cat_i] + "-" + j + "-plus").attr("src", "https://cdn1.iconfinder.com/data/icons/warnings-and-dangers/400/Warning-05-512.png")
+						}
 						if (data.articles[j].urlToImage == null) {
 							$("#" + Categories[cat_i] + "-" + j + "-img").attr("src", CategoriesPhotos[cat_i]);
 						}
@@ -94,4 +117,34 @@ $(document).ready(function ($) {
 			});
 		}
 	}
+
+	$(".favoriteClick").click(function () {
+
+		path = $(this)[0].id.replace('-share', '')
+		index__ = favoritesArray.indexOf($("#" + path + "-header").attr('href'))
+		console.log(index__)
+		if (index__ != -1) {
+			deleteChild = favoritesDatabaseRef.child('/' + favoriteKeys[index__])
+			deleteChild.remove()
+				.then(function () {
+					updateFavorites()
+					$("#" + path + "-plus").attr("src", "https://freeiconshop.com/wp-content/uploads/edd/plus-flat.png")
+				})
+				.catch(function (error) {
+				});
+			return
+		}
+		/*not favorite*/
+		node1 = favoritesDatabaseRef.push()
+		node1.set({
+			urlToImage: $("#" + path + "-img").attr("src"),
+			title: $("#" + path + "-header").text(),
+			url: $("#" + path + "-header").attr('href')
+
+		}).then(function () {
+			$("#" + path + "-plus").attr("src", "https://cdn1.iconfinder.com/data/icons/warnings-and-dangers/400/Warning-05-512.png")
+			updateFavorites()
+			alert("Done!")
+		})
+	})
 })
