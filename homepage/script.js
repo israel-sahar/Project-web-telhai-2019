@@ -85,6 +85,7 @@ $(document).ready(function ($) {
 				type: "GET",
 				async: false,
 				success: function (data) {
+					console.log(data);
 
 
 					for (j = 1; j <= 3; j++) {
