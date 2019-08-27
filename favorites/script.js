@@ -19,7 +19,7 @@ $(document).ready(function () {
             databaseRef = firebase.database().ref().child('users/' + user.uid);
             favoritesDatabaseRef = firebase.database().ref().child('favorites/' + user.uid);
             updateFavorites()
-            $('#favoritesTable').show()
+
         }
         else {
             location.href = '../homepage/homepage.html'
@@ -30,28 +30,54 @@ $(document).ready(function () {
 
     })
 
+    $(".removeClick").click(function () {
+        console.log("ss")
+        path = $(this)[0].id.replace('-favorite', '')
+        console.log(path)
+
+        deleteChild = favoritesDatabaseRef.child('/' + favoriteKeys[path])
+        deleteChild.remove().then(function () {
+            updateFavorites()
+            $("#" + path + "-row").remove()
+        })
+            .catch(function (error) { });
+    })
     function updateFavorites() {
 
         favoriteKeys = []
         favoritesArray = []
         var findex = 0
         favoritesDatabaseRef.once('value').then(function (snapshot) {
-            snapshot.forEach(function (childSnapshot) {
+            if (snapshot.val() == null) {
+                $('#favoritesTable').hide()
+                $('#EmptyMsg').show()
+                console.log("once")
+            }
+            else {
+                snapshot.forEach(function (childSnapshot) {
 
-                $('#favoritesBody').append(
+                    $('#favoritesBody').append(
 
-                    '<tr><td><img src="' + childSnapshot.val()['urlToImage'] + '" alt=""' +
-                    'style="height: 80px;width: 80px; border-radius: 60%"></td><td><h6>' + childSnapshot.val()['title'] + '</h6> </td> <td><a   href="' + childSnapshot.val()['url']
-                    + '">Read more...</a></td>' +
-                    '<td> <a href=""><img id="favorite-' + findex + '"src="https://cdn1.iconfinder.com/data/icons/warnings-and-dangers/400/Warning-05-512.png" alt="" style="height: 48px;width: 48px;"></a></td></tr>')
-
-                favoriteKeys[findex] = childSnapshot.key
-                favoritesArray[findex++] = childSnapshot.val()['url']
-
+                        '<tr id="' + findex + '-row"><td><img src="' + childSnapshot.val()['urlToImage'] + '" alt=""' +
+                        'style="height: 80px;width: 80px; border-radius: 60%"></td><td><h6>' + childSnapshot.val()['title'] + '</h6> </td> <td><a   href="' + childSnapshot.val()['url']
+                        + '">Read more...</a></td>' +
+                        '<td><a class="removeClick" id="' +
+                        findex +
+                        '-favorite" href="#"><img src="https://cdn1.iconfinder.com/data/icons/warnings-and-dangers/400/Warning-05-512.png" alt="" style="height: 48px;width: 48px;"/></a></td></tr>')
 
 
-            })
+                    favoriteKeys[findex] = childSnapshot.key
+                    favoritesArray[findex++] = childSnapshot.val()['url']
+                    if (findex + 1 == snapshot.val().__proto__.constructor.assign.length) {
+                        $('#favoritesTable').show()
+                    }
+                })
+            }
         })
+
+
     }
+
+
 
 })
