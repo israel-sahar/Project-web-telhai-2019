@@ -2,6 +2,7 @@ $(document).ready(function () {
     var favoritesDatabaseRef
     var favoritesArray = []
     var favoriteKeys = []
+    var startPage = true
     firebase.auth().onAuthStateChanged(function (user) {
         if (user) {
             var displayName = user.displayName;
@@ -30,40 +31,39 @@ $(document).ready(function () {
 
     })
 
-    $(".removeClick").click(function () {
-        console.log("ss")
+    /*function to delete favorite when click the remove button*/
+    $("#favoritesBody").on("click", ".removeClick", function () {
         path = $(this)[0].id.replace('-favorite', '')
-        console.log(path)
-
         deleteChild = favoritesDatabaseRef.child('/' + favoriteKeys[path])
         deleteChild.remove().then(function () {
             updateFavorites()
             $("#" + path + "-row").remove()
         })
             .catch(function (error) { });
-    })
-    function updateFavorites() {
+    });
 
+    /*fill/update the favoritesArray and favoriteKeys .update the table in the page*/
+    function updateFavorites() {
+        $('#favoritesTable').hide()
+        $('#favoritesTable tr').remove()
         favoriteKeys = []
         favoritesArray = []
         var findex = 0
         favoritesDatabaseRef.once('value').then(function (snapshot) {
             if (snapshot.val() == null) {
-                $('#favoritesTable').hide()
                 $('#EmptyMsg').show()
-                console.log("once")
             }
             else {
                 snapshot.forEach(function (childSnapshot) {
 
-                    $('#favoritesBody').append(
+                    $('#favoritesBody').html($('#favoritesBody').html() +
 
-                        '<tr id="' + findex + '-row"><td><img src="' + childSnapshot.val()['urlToImage'] + '" alt=""' +
+                        '<tr id="' + findex + '-row"><td><img class="removeClick" src="' + childSnapshot.val()['urlToImage'] + '" alt=""' +
                         'style="height: 80px;width: 80px; border-radius: 60%"></td><td><h6>' + childSnapshot.val()['title'] + '</h6> </td> <td><a   href="' + childSnapshot.val()['url']
                         + '">Read more...</a></td>' +
-                        '<td><a class="removeClick" id="' +
-                        findex +
-                        '-favorite" href="#"><img src="https://cdn1.iconfinder.com/data/icons/warnings-and-dangers/400/Warning-05-512.png" alt="" style="height: 48px;width: 48px;"/></a></td></tr>')
+                        '<td><button type="submit" class=" btn btn-link removeClick" id="' + findex + '-favorite"><img src="https://cdn1.iconfinder.com/data/icons/warnings-and-dangers/400/Warning-05-512.png" alt="" style="height: 48px;width: 48px;"/></button></td></tr>')
+
+
 
 
                     favoriteKeys[findex] = childSnapshot.key
@@ -72,6 +72,8 @@ $(document).ready(function () {
                         $('#favoritesTable').show()
                     }
                 })
+
+
             }
         })
 
