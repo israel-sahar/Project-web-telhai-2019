@@ -76,11 +76,30 @@ $(document).ready(function () {
     })
 
     $('.Topnavs').click(function () {
-        category = $(this)[0].id.replace('ref-', '')
-        console.log(category)
-        localStorage.removeItem('category')
-        localStorage.setItem('category', category)
-        console.log(localStorage.getItem('country'))
+        if ($(this)[0].id.indexOf("ref-country-") == -1) {
+            if ($(this)[0].id.indexOf("ref-channel-") == -1) {
+                //user choose category
+                category = $(this)[0].id.replace('ref-', '')
+                localStorage.removeItem('category')
+                localStorage.setItem('category', category)
+            }
+            else {
+                //user choose channel
+                channel = $(this)[0].id.replace('ref-channel-', '')
+                localStorage.removeItem('category')
+                localStorage.setItem('category', 'channel')
+                localStorage.removeItem('channel')
+                localStorage.setItem('channel', channel)
+            }
+        }
+        else {
+            //user choose country
+            countryCode = $(this)[0].id.replace('ref-country-', '')
+            localStorage.removeItem('category')
+            localStorage.setItem('category', 'Country')
+            localStorage.removeItem('country')
+            localStorage.setItem('country', countryCode)
+        }
         location.href = '../categories/categories.html'
     })
 })
