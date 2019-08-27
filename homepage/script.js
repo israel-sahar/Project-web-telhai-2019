@@ -23,11 +23,6 @@ $(document).ready(function ($) {
 	]
 	var favoritesArray = []
 	var favoriteKeys = []
-	$('.card__share > a').on('click', function (e) {
-		e.preventDefault() // prevent default action - hash doesn't appear in url
-		$(this).parent().find('div').toggleClass('card__social--active');
-		$(this).toggleClass('share-expanded');
-	});
 
 	firebase.auth().onAuthStateChanged(function (user) {
 		if (user) {
@@ -49,6 +44,8 @@ $(document).ready(function ($) {
 			updateFavorites()
 			databaseRef.once('value').then(function (snapshot) {
 				var country = countries.get(snapshot.val()['Country'])
+				localStorage.removeItem('country')
+				localStorage.setItem('country', snapshot.val()['Country'])
 				fillPosts(country)
 			})
 
@@ -57,6 +54,8 @@ $(document).ready(function ($) {
 		else {
 			$(".favoriteClick").hide()
 			fillPosts("il")
+			localStorage.removeItem('country')
+			localStorage.setItem('country', 'il')
 			$("#LoginRegDiv").show()
 		}
 		// User is signed out.
@@ -65,6 +64,7 @@ $(document).ready(function ($) {
 
 	})
 
+	/*update the favorites arrays*/
 	function updateFavorites() {
 		favoriteKeys = []
 		favoritesArray = []
@@ -76,7 +76,10 @@ $(document).ready(function ($) {
 			})
 		})
 	}
-	function fillPosts(country) {
+	/*fill all the fields with new articles from server and update the arrays */
+	/*fill the post according to the country we get as peremater*/
+
+	/*function fillPosts(country) {
 		var cat_i
 		for (cat_i = 0; cat_i < Categories.length; cat_i++) {
 			urlFrom = "https://newsapi.org/v2/top-headlines?country=" + country + "&category=" + Categories[cat_i] + "&apiKey=32733c433b974e5e87be80d889932a64"
@@ -119,12 +122,12 @@ $(document).ready(function ($) {
 			});
 		}
 	}
-
+*/
+	/*respones to add/remove btn.the function add or remove the article from the server and change to photo of the button*/
 	$(".favoriteClick").click(function () {
 
 		path = $(this)[0].id.replace('-share', '')
 		index__ = favoritesArray.indexOf($("#" + path + "-header").attr('href'))
-		console.log(index__)
 		if (index__ != -1) {
 			deleteChild = favoritesDatabaseRef.child('/' + favoriteKeys[index__])
 			deleteChild.remove()
@@ -146,7 +149,7 @@ $(document).ready(function ($) {
 		}).then(function () {
 			$("#" + path + "-plus").attr("src", "https://cdn1.iconfinder.com/data/icons/warnings-and-dangers/400/Warning-05-512.png")
 			updateFavorites()
-			alert("Done!")
+			alert("The article added to your favorites list.")
 		})
 	})
 })

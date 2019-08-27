@@ -20,9 +20,17 @@ $(document).ready(function () {
             $("#name").html("Hello," + "<b>" + displayName + "</b>")
             $("#img").attr('src', photoURL)
             $("#USER-CONNECTED-DIV").show()
+
+            databaseRef = firebase.database().ref().child('users/' + user.uid);
+            databaseRef.once('value').then(function (snapshot) {
+                localStorage.removeItem('country')
+                localStorage.setItem('country', snapshot.val()['Country'])
+            })
         }
         else {
             $("#LoginRegDiv").show()
+            localStorage.removeItem('country')
+            localStorage.setItem('country', 'il')
         }
         // User is signed out.
         // ...
@@ -65,5 +73,14 @@ $(document).ready(function () {
         }, function (error) {
             // An error happened.
         });
+    })
+
+    $('.Topnavs').click(function () {
+        category = $(this)[0].id.replace('ref-', '')
+        console.log(category)
+        localStorage.removeItem('category')
+        localStorage.setItem('category', category)
+        console.log(localStorage.getItem('country'))
+        location.href = '../categories/categories.html'
     })
 })
