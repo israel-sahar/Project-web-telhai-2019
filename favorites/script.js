@@ -58,7 +58,7 @@ $(document).ready(function () {
 
                     $('#favoritesBody').html($('#favoritesBody').html() +
 
-                        '<tr id="' + findex + '-row"><td><img class="removeClick" src="' + childSnapshot.val()['urlToImage'] + '" alt=""' +
+                        '<tr id="' + findex + '-row"><td><img src="' + childSnapshot.val()['urlToImage'] + '" alt=""' +
                         'style="height: 80px;width: 80px; border-radius: 60%"></td><td><h6>' + childSnapshot.val()['title'] + '</h6> </td> <td><a   href="' + childSnapshot.val()['url']
                         + '">Read more...</a></td>' +
                         '<td><button type="submit" class=" btn btn-link removeClick" id="' + findex + '-favorite"><img src="https://cdn1.iconfinder.com/data/icons/warnings-and-dangers/400/Warning-05-512.png" alt="" style="height: 48px;width: 48px;"/></button></td></tr>')
