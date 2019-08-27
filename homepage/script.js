@@ -79,7 +79,7 @@ $(document).ready(function ($) {
 	/*fill all the fields with new articles from server and update the arrays */
 	/*fill the post according to the country we get as peremater*/
 
-	/*function fillPosts(country) {
+	function fillPosts(country) {
 		var cat_i
 		for (cat_i = 0; cat_i < Categories.length; cat_i++) {
 			urlFrom = "https://newsapi.org/v2/top-headlines?country=" + country + "&category=" + Categories[cat_i] + "&apiKey=32733c433b974e5e87be80d889932a64"
@@ -122,7 +122,7 @@ $(document).ready(function ($) {
 			});
 		}
 	}
-*/
+
 	/*respones to add/remove btn.the function add or remove the article from the server and change to photo of the button*/
 	$(".favoriteClick").click(function () {
 
