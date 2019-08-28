@@ -5,6 +5,7 @@ $(document).ready(function () {
         isValidnickname($("#NickNameInput").val())
     })
 
+    /*check if nickname is valid */
     function isValidnickname(nickname) {
         $("#NickNameInput").removeClass("border-danger")
         $("#NickNameInput").removeClass("border-success")
@@ -29,6 +30,8 @@ $(document).ready(function () {
         });
         return !flag
     }
+
+    /*register to the website*/
     $('#SignUpButton').click(function () {
         var errors = 0
         $('#SignUpMsg').text('')
@@ -108,7 +111,6 @@ $(document).ready(function () {
             }
         }
 
-        //TODO - check birthday
         if (errors != 0) return;
 
         /*add user to database*/
@@ -119,21 +121,21 @@ $(document).ready(function () {
                 photoURL: "https://api.adorable.io/avatars/50/" + user.email + ".io.png"
 
             }).then(function () {
-                /*TODO*/
+                var pushnickname = nicknamesRef.push();
+                pushnickname.set($('#NickNameInput').val());
+                usersRef = databaseRef.child('users/' + user.uid)
+                usersRef.set({
+                    FirstName: $('#firstNameInput').val(),
+                    familyName: $('#familyNameInput').val(),
+                    nickName: $('#NickNameInput').val(),
+                    photoURL: "https://api.adorable.io/avatars/50/" + user.email + ".io.png",
+                    Gender: $('input:radio[name=sex]:checked').val(),
+                    BirthDay: $('#BirthInput').val(),
+                    Country: $("#countrySelect").val(),
+                    favorites: "null"
+                });
             }).catch(function (error) {
                 // An error happened.
-            });
-            var pushnickname = nicknamesRef.push();
-            pushnickname.set($('#NickNameInput').val());
-            usersRef = databaseRef.child('users/' + user.uid)
-            usersRef.set({
-                FirstName: $('#firstNameInput').val(),
-                familyName: $('#familyNameInput').val(),
-                nickName: $('#NickNameInput').val(),
-                Gender: $('input:radio[name=sex]:checked').val(),
-                BirthDay: $('#BirthInput').val(),
-                Country: $("#countrySelect").val(),
-                favorites: "null"
             });
 
         }).catch(function (error) {
