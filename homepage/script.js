@@ -21,7 +21,7 @@ $(document).ready(function ($) {
 		"../categories-photos/technology.jpg",
 		"../categories-photos/business.jpg"
 	]
-	var favoritesArray = []
+	var favoritesArray__ = []
 	var favoriteKeys = []
 
 	firebase.auth().onAuthStateChanged(function (user) {
@@ -41,8 +41,9 @@ $(document).ready(function ($) {
 			databaseRef = firebase.database().ref().child('users/' + user.uid);
 			favoritesDatabaseRef = firebase.database().ref().child('favorites/' + user.uid);
 
-			updateFavorites()
+
 			databaseRef.once('value').then(function (snapshot) {
+				updateFavorites()
 				var country = countries.get(snapshot.val()['Country'])
 				localStorage.removeItem('country')
 				localStorage.setItem('country', snapshot.val()['Country'])
@@ -67,12 +68,12 @@ $(document).ready(function ($) {
 	/*update the favorites arrays*/
 	function updateFavorites() {
 		favoriteKeys = []
-		favoritesArray = []
+		favoritesArray__ = []
 		var findex = 0
 		favoritesDatabaseRef.once('value').then(function (snapshot) {
 			snapshot.forEach(function (childSnapshot) {
 				favoriteKeys[findex] = childSnapshot.key
-				favoritesArray[findex++] = childSnapshot.val()['url']
+				favoritesArray__[findex++] = childSnapshot.val()['url']
 			})
 		})
 	}
@@ -88,8 +89,13 @@ $(document).ready(function ($) {
 				type: "GET",
 				async: false,
 				success: function (data) {
+					console.log(favoritesArray__)
+
 					for (j = 1; j <= 3; j++) {
-						if (data.articles[j].url != null && favoritesArray.indexOf(data.articles[j].url) != -1) {
+						console.log(data.articles[j].url)
+
+						if (favoritesArray__.indexOf(data.articles[j].url) != -1) {
+							console.log("scsc")
 							$("#" + Categories[cat_i] + "-" + j + "-plus").attr("src", "https://cdn1.iconfinder.com/data/icons/warnings-and-dangers/400/Warning-05-512.png")
 						}
 						if (data.articles[j].urlToImage == null) {
@@ -125,7 +131,7 @@ $(document).ready(function ($) {
 	$(".favoriteClick").click(function () {
 
 		path = $(this)[0].id.replace('-share', '')
-		index__ = favoritesArray.indexOf($("#" + path + "-header").attr('href'))
+		index__ = favoritesArray__.indexOf($("#" + path + "-header").attr('href'))
 		if (index__ != -1) {
 			deleteChild = favoritesDatabaseRef.child('/' + favoriteKeys[index__])
 			deleteChild.remove()
@@ -143,7 +149,6 @@ $(document).ready(function ($) {
 			urlToImage: $("#" + path + "-img").attr("src"),
 			title: $("#" + path + "-header").text(),
 			url: $("#" + path + "-header").attr('href')
-
 		}).then(function () {
 			$("#" + path + "-plus").attr("src", "https://cdn1.iconfinder.com/data/icons/warnings-and-dangers/400/Warning-05-512.png")
 			updateFavorites()
