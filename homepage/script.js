@@ -89,7 +89,7 @@ $(document).ready(function ($) {
 				async: false,
 				success: function (data) {
 					for (j = 1; j <= 3; j++) {
-						if (favoritesArray.indexOf(data.articles[j].url) != -1) {
+						if (data.articles[j].url != null && favoritesArray.indexOf(data.articles[j].url) != -1) {
 							$("#" + Categories[cat_i] + "-" + j + "-plus").attr("src", "https://cdn1.iconfinder.com/data/icons/warnings-and-dangers/400/Warning-05-512.png")
 						}
 						if (data.articles[j].urlToImage == null) {
