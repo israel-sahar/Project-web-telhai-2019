@@ -1,4 +1,5 @@
 $(document).ready(function ($) {
+	stratP = true
 	var favoritesDatabaseRef
 	var countries = new Map([
 		["Israel", "il"],
@@ -35,19 +36,20 @@ $(document).ready(function ($) {
 			var providerData = user.providerData;
 			// User is logged in
 			$("#USER-CONNECTED-DIV").hide()
-			$("#name").html("Hello," + "<b>" + displayName + "</b>")
-			$("#img").attr('src', photoURL)
-			$("#USER-CONNECTED-DIV").show()
+
 			databaseRef = firebase.database().ref().child('users/' + user.uid);
 			favoritesDatabaseRef = firebase.database().ref().child('favorites/' + user.uid);
 
 
 			databaseRef.once('value').then(function (snapshot) {
-				updateFavorites()
+				$("#name").html("Hello," + "<b>" + snapshot.val()['nickName'] + "</b>")
+				$("#img").attr('src', snapshot.val()['photoURL'])
+				$("#USER-CONNECTED-DIV").show()
+				updateFavorites(country)
 				var country = countries.get(snapshot.val()['Country'])
 				localStorage.removeItem('country')
 				localStorage.setItem('country', snapshot.val()['Country'])
-				fillPosts(country)
+				updateFavorites(country)
 			})
 
 
@@ -66,7 +68,7 @@ $(document).ready(function ($) {
 	})
 
 	/*update the favorites arrays*/
-	function updateFavorites() {
+	function updateFavorites(countryK) {
 		favoriteKeys = []
 		favoritesArray__ = []
 		var findex = 0
@@ -75,6 +77,11 @@ $(document).ready(function ($) {
 				favoriteKeys[findex] = childSnapshot.key
 				favoritesArray__[findex++] = childSnapshot.val()['url']
 			})
+			if (stratP) {
+				fillPosts(countryK)
+				stratP = false
+			}
+
 		})
 	}
 	/*fill all the fields with new articles from server and update the arrays */

@@ -1,4 +1,20 @@
 $(document).ready(function () {
+    firebase.auth().onAuthStateChanged(function (user) {
+        if (user) {
+            location.href = '../homepage/homepage.html'
+        }
+        else {
+            $("#LoginRegDiv").show()
+            $("#forgot-password-container").show()
+        }
+        // User is signed out.
+        // ...
+
+
+    })
+
+
+    /*send request to reset password */
     $('#resetBtn').click(function () {
         var emailAddress = $('#emailResetInput').val();
         $('#ResetMsg').text('')

@@ -1,6 +1,18 @@
 $(document).ready(function () {
     databaseRef = firebase.database().ref()
 
+    firebase.auth().onAuthStateChanged(function (user) {
+        if (user) {
+            location.href = '../homepage/homepage.html'
+        }
+        else {
+            $("#LoginRegDiv").show()
+            $("#SignUpDiv").show()
+        }
+        // User is signed out.
+        // ...
+    })
+
     $("#NickNameInput").change(function () {
         isValidnickname($("#NickNameInput").val())
     })
@@ -31,7 +43,7 @@ $(document).ready(function () {
         return !flag
     }
 
-    /*register to the website*/
+    /*create new user and check fields before*/
     $('#SignUpButton').click(function () {
         var errors = 0
         $('#SignUpMsg').text('')
@@ -121,21 +133,22 @@ $(document).ready(function () {
                 photoURL: "https://api.adorable.io/avatars/50/" + user.email + ".io.png"
 
             }).then(function () {
-                var pushnickname = nicknamesRef.push();
-                pushnickname.set($('#NickNameInput').val());
-                usersRef = databaseRef.child('users/' + user.uid)
-                usersRef.set({
-                    FirstName: $('#firstNameInput').val(),
-                    familyName: $('#familyNameInput').val(),
-                    nickName: $('#NickNameInput').val(),
-                    photoURL: "https://api.adorable.io/avatars/50/" + user.email + ".io.png",
-                    Gender: $('input:radio[name=sex]:checked').val(),
-                    BirthDay: $('#BirthInput').val(),
-                    Country: $("#countrySelect").val(),
-                    favorites: "null"
-                });
+                /*TODO*/
             }).catch(function (error) {
                 // An error happened.
+            });
+            var pushnickname = nicknamesRef.push();
+            pushnickname.set($('#NickNameInput').val());
+            usersRef = databaseRef.child('users/' + user.uid)
+            usersRef.set({
+                FirstName: $('#firstNameInput').val(),
+                familyName: $('#familyNameInput').val(),
+                nickName: $('#NickNameInput').val(),
+                Gender: $('input:radio[name=sex]:checked').val(),
+                photoURL: "https://api.adorable.io/avatars/50/" + user.email + ".io.png",
+                BirthDay: $('#BirthInput').val(),
+                Country: $("#countrySelect").val(),
+                favorites: "null"
             });
 
         }).catch(function (error) {
