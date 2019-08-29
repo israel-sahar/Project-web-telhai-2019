@@ -31,9 +31,9 @@ $(document).ready(function () {
       })
     }
     else {
-      fillPage()
       $(".favoriteClick").hide()
       $("#LoginRegDiv").show()
+      fillPage()
     }
     // User is signed out.
     // ...

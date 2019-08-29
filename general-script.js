@@ -68,12 +68,12 @@ $(document).ready(function () {
     })
 
     $('.Topnavs').click(function () {
-        var ele = $(this)
         if (userID != null) {
             databaseRef = firebase.database().ref().child('users/' + userID);
             databaseRef.once('value').then(function (snapshot) {
                 localStorage.removeItem('country')
                 localStorage.setItem('country', countries.get(snapshot.val()['Country']))
+                location.href = '../categories/categories.html'
             })
         }
 
@@ -82,6 +82,7 @@ $(document).ready(function () {
             category = $(this)[0].id.replace('ref-', '')
             localStorage.removeItem('category')
             localStorage.setItem('category', category)
+
         }
         else {
             //user choose country
@@ -93,7 +94,6 @@ $(document).ready(function () {
         }
 
 
-        location.href = '../categories/categories.html'
 
     })
 })
