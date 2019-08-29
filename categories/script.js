@@ -108,7 +108,7 @@ $(document).ready(function () {
               '</div>' +
               '<article class="card__article">' +
               '<h2><a target="_blank" href="#" id="a-' + indx + '-header"></a></h2>' +
-              '<p id="a-' + indx + '-description">...</p>' +
+              '<p id="a-' + indx + '-description" class="descrip">...</p>' +
               '</article>' +
               '</div>' +
               '<div class="card__action">' +
