@@ -27,8 +27,8 @@ $(document).ready(function ($) {
 				$("#img").attr('src', snapshot.val()['photoURL'])
 				$("#USER-CONNECTED-DIV").show()
 				var country = countries.get(snapshot.val()['Country'])
-				localStorage.removeItem('country')
-				localStorage.setItem('country', snapshot.val()['Country'])
+				/*localStorage.removeItem('country')
+				localStorage.setItem('country', snapshot.val()['Country'])*/
 				updateFavorites(country)
 			})
 
@@ -37,8 +37,8 @@ $(document).ready(function ($) {
 		else {
 			$(".favoriteClick").hide()
 			fillPosts("il")
-			localStorage.removeItem('country')
-			localStorage.setItem('country', 'il')
+			/*localStorage.removeItem('country')
+			localStorage.setItem('country', 'il')*/
 			$("#LoginRegDiv").show()
 		}
 		// User is signed out.

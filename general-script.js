@@ -74,6 +74,10 @@ $(document).ready(function () {
                 localStorage.setItem('country', countries.get(snapshot.val()['Country']))
             })
         }
+        else {
+            localStorage.removeItem('country')
+            localStorage.setItem('country', 'il')
+        }
 
         if ($(this)[0].id.indexOf("ref-country-") == -1) {
             //user choose category

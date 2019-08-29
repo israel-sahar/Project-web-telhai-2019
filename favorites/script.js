@@ -22,8 +22,8 @@ $(document).ready(function () {
                 $("#name").html("Hello," + "<b>" + snapshot.val()['nickName'] + "</b>")
                 $("#img").attr('src', snapshot.val()['photoURL'])
                 $("#USER-CONNECTED-DIV").show()
-                localStorage.removeItem('country')
-                localStorage.setItem('country', countries.get(snapshot.val()['Country']))
+                /* localStorage.removeItem('country')
+                 localStorage.setItem('country', countries.get(snapshot.val()['Country']))*/
             })
 
         }
