@@ -11,15 +11,21 @@ $(document).ready(function () {
             var providerData = user.providerData;
             //login div
             $("#USER-CONNECTED-DIV").hide()
-            $("#name").html("Hello," + "<b>" + displayName + "</b>")
-            $("#img").attr('src', photoURL)
-            $("#USER-CONNECTED-DIV").show()
 
-            //page detalis
-            $("#h1-info").html("<b>" + displayName + "'s Profile..</b>")
-            $("#img-info").attr('src', photoURL)
-            $("#email-info").html("<b>Email:</b>" + user.email)
+
             databaseRef = firebase.database().ref().child('users/' + user.uid);
+            databaseRef.once('value').then(function (snapshot) {
+                $("#name").html("Hello," + "<b>" + snapshot.val()['nickName'] + "</b>")
+                $("#img").attr('src', snapshot.val()['photoURL'])
+                $("#USER-CONNECTED-DIV").show()
+                localStorage.removeItem('country')
+                localStorage.setItem('country', countries.get(snapshot.val()['Country']))
+
+                //page detalis
+                $("#h1-info").html("<b>" + snapshot.val()['nickName'] + "'s Profile..</b>")
+                $("#img-info").attr('src', snapshot.val()['photoURL'])
+                $("#email-info").html("<b>Email:</b>" + snapshot.val()['email'])
+            })
             databaseRef.on('value', function (snapshot) {
                 $("#first-info").text(snapshot.val()['FirstName'])
                 $("#family-info").text(snapshot.val()['familyName'])

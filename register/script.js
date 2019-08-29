@@ -148,7 +148,7 @@ $(document).ready(function () {
                 photoURL: "https://api.adorable.io/avatars/50/" + user.email + ".io.png",
                 BirthDay: $('#BirthInput').val(),
                 Country: $("#countrySelect").val(),
-                favorites: "null"
+                email: $('#emailSignUpInput').val()
             });
 
         }).catch(function (error) {

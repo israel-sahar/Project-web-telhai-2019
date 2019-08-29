@@ -1,27 +1,8 @@
 $(document).ready(function ($) {
 	stratP = true
 	var favoritesDatabaseRef
-	var countries = new Map([
-		["Israel", "il"],
-		["Argentina", "ar"],
-		["India", "in"],
-		["Australia", "au"],
-		["Ireland", "ie"],
-		["Austria", "at"],
-		["Romania", "ro"],
-		["Turkey", "tr"],
-		["Russia", "ru"],
-		["UAE", "ae"],
-		["Saudi Arabia", "sa"],
-		["Ukraine", "ua"]
-	])
-	var Categories = ["entertainment", "health", "science", "sports", "technology", "business"]
-	var CategoriesPhotos = ["../categories-photos/entertainment.jpeg", "../categories-photos/health.jpg",
-		"../categories-photos/science.jpg",
-		"../categories-photos/sports.jpg",
-		"../categories-photos/technology.jpg",
-		"../categories-photos/business.jpg"
-	]
+
+
 	var favoritesArray__ = []
 	var favoriteKeys = []
 
@@ -45,7 +26,6 @@ $(document).ready(function ($) {
 				$("#name").html("Hello," + "<b>" + snapshot.val()['nickName'] + "</b>")
 				$("#img").attr('src', snapshot.val()['photoURL'])
 				$("#USER-CONNECTED-DIV").show()
-				updateFavorites(country)
 				var country = countries.get(snapshot.val()['Country'])
 				localStorage.removeItem('country')
 				localStorage.setItem('country', snapshot.val()['Country'])
@@ -96,13 +76,8 @@ $(document).ready(function ($) {
 				type: "GET",
 				async: false,
 				success: function (data) {
-					console.log(favoritesArray__)
-
 					for (j = 1; j <= 3; j++) {
-						console.log(data.articles[j].url)
-
 						if (favoritesArray__.indexOf(data.articles[j].url) != -1) {
-							console.log("scsc")
 							$("#" + Categories[cat_i] + "-" + j + "-plus").attr("src", "https://cdn1.iconfinder.com/data/icons/warnings-and-dangers/400/Warning-05-512.png")
 						}
 						if (data.articles[j].urlToImage == null) {

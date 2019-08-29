@@ -1,45 +1,37 @@
+var countries = new Map([
+    ["Israel", "il"],
+    ["Argentina", "ar"],
+    ["India", "in"],
+    ["Australia", "au"],
+    ["Ireland", "ie"],
+    ["Austria", "at"],
+    ["Romania", "ro"],
+    ["Turkey", "tr"],
+    ["Russia", "ru"],
+    ["UAE", "ae"],
+    ["Saudi Arabia", "sa"],
+    ["Ukraine", "ua"]
+])
+
+var Categories = ["entertainment", "health", "science", "sports", "technology", "business"]
+var CategoriesPhotos = ["../categories-photos/entertainment.jpeg", "../categories-photos/health.jpg",
+    "../categories-photos/science.jpg",
+    "../categories-photos/sports.jpg",
+    "../categories-photos/technology.jpg",
+    "../categories-photos/business.jpg"
+]
+
 $(document).ready(function () {
-    var CurrentPage = document.URL.match(/.*\/(.*)$/)[1]
+    localStorage.setItem("country", "il")
+    var userID = null
     firebase.auth().onAuthStateChanged(function (user) {
-        if (CurrentPage == "profile.html" || CurrentPage == "profile.html#") {
-            return;
-        }
-        if (user) {
-            var displayName = user.displayName;
-            var email = user.email;
-            var emailVerified = user.emailVerified;
-            var photoURL = user.photoURL;
-            var isAnonymous = user.isAnonymous;
-            var uid = user.uid;
-            var providerData = user.providerData;
-            // User is logged in
-            if (CurrentPage == "register.html" || CurrentPage == "register.html#" || CurrentPage == "resetpassword.html" || CurrentPage == "resetpassword.html#") {
-                location.href = '../homepage/homepage.html'
-            }
-            $("#USER-CONNECTED-DIV").hide()
-            $("#name").html("Hello," + "<b>" + displayName + "</b>")
-            $("#img").attr('src', photoURL)
-            $("#USER-CONNECTED-DIV").show()
+        if (user)
 
-            databaseRef = firebase.database().ref().child('users/' + user.uid);
-            databaseRef.once('value').then(function (snapshot) {
-                localStorage.removeItem('country')
-                localStorage.setItem('country', snapshot.val()['Country'])
-            })
-        }
-        else {
-            $("#LoginRegDiv").show()
-            localStorage.removeItem('country')
-            localStorage.setItem('country', 'il')
-        }
-        // User is signed out.
-        // ...
-
+            userID = user.uid;
 
     })
 
-
-
+    var CurrentPage = document.URL.match(/.*\/(.*)$/)[1]
     $(".groupClick").click(function () {
         $('#emailInput').removeClass('border-danger')
         $('#passwordInput').removeClass('border-danger')
@@ -76,21 +68,20 @@ $(document).ready(function () {
     })
 
     $('.Topnavs').click(function () {
+        var ele = $(this)
+        if (userID != null) {
+            databaseRef = firebase.database().ref().child('users/' + userID);
+            databaseRef.once('value').then(function (snapshot) {
+                localStorage.removeItem('country')
+                localStorage.setItem('country', countries.get(snapshot.val()['Country']))
+            })
+        }
+
         if ($(this)[0].id.indexOf("ref-country-") == -1) {
-            if ($(this)[0].id.indexOf("ref-channel-") == -1) {
-                //user choose category
-                category = $(this)[0].id.replace('ref-', '')
-                localStorage.removeItem('category')
-                localStorage.setItem('category', category)
-            }
-            else {
-                //user choose channel
-                channel = $(this)[0].id.replace('ref-channel-', '')
-                localStorage.removeItem('category')
-                localStorage.setItem('category', 'channel')
-                localStorage.removeItem('channel')
-                localStorage.setItem('channel', channel)
-            }
+            //user choose category
+            category = $(this)[0].id.replace('ref-', '')
+            localStorage.removeItem('category')
+            localStorage.setItem('category', category)
         }
         else {
             //user choose country
@@ -100,6 +91,9 @@ $(document).ready(function () {
             localStorage.removeItem('country')
             localStorage.setItem('country', countryCode)
         }
+
+
         location.href = '../categories/categories.html'
+
     })
 })

@@ -14,12 +14,17 @@ $(document).ready(function () {
             var providerData = user.providerData;
             // User is logged in
             $("#USER-CONNECTED-DIV").hide()
-            $("#name").html("Hello," + "<b>" + displayName + "</b>")
-            $("#img").attr('src', photoURL)
-            $("#USER-CONNECTED-DIV").show()
             databaseRef = firebase.database().ref().child('users/' + user.uid);
             favoritesDatabaseRef = firebase.database().ref().child('favorites/' + user.uid);
             updateFavorites()
+
+            databaseRef.once('value').then(function (snapshot) {
+                $("#name").html("Hello," + "<b>" + snapshot.val()['nickName'] + "</b>")
+                $("#img").attr('src', snapshot.val()['photoURL'])
+                $("#USER-CONNECTED-DIV").show()
+                localStorage.removeItem('country')
+                localStorage.setItem('country', countries.get(snapshot.val()['Country']))
+            })
 
         }
         else {
