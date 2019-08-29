@@ -22,7 +22,6 @@ var CategoriesPhotos = ["../categories-photos/entertainment.jpeg", "../categorie
 ]
 
 $(document).ready(function () {
-    localStorage.setItem("country", "il")
     var userID = null
     firebase.auth().onAuthStateChanged(function (user) {
         if (user)
@@ -73,7 +72,6 @@ $(document).ready(function () {
             databaseRef.once('value').then(function (snapshot) {
                 localStorage.removeItem('country')
                 localStorage.setItem('country', countries.get(snapshot.val()['Country']))
-                location.href = '../categories/categories.html'
             })
         }
 
@@ -94,6 +92,7 @@ $(document).ready(function () {
         }
 
 
+        location.href = '../categories/categories.html'
 
     })
 })
