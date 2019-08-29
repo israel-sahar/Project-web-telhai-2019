@@ -67,22 +67,27 @@ $(document).ready(function () {
     })
 
     $('.Topnavs').click(function () {
+
         if ($(this)[0].id.indexOf("ref-country-") == -1) {
             //user choose category
-            category = $(this)[0].id.replace('ref-', '')
+            localStorage.removeItem('country')
             localStorage.removeItem('category')
+            category = $(this)[0].id.replace('ref-', '')
             localStorage.setItem('category', category)
             if (userID != null) {
                 databaseRef = firebase.database().ref().child('users/' + userID);
                 databaseRef.once('value').then(function (snapshot) {
-                    localStorage.removeItem('country')
                     localStorage.setItem('country', countries.get(snapshot.val()['Country']))
+                    location.href = '../categories/categories.html'
+
                 })
             }
             else {
                 localStorage.removeItem('country')
                 localStorage.setItem('country', 'il')
+                location.href = '../categories/categories.html'
             }
+
 
         }
         else {
@@ -92,10 +97,11 @@ $(document).ready(function () {
             localStorage.setItem('category', 'Country')
             localStorage.removeItem('country')
             localStorage.setItem('country', countryCode)
+            location.href = '../categories/categories.html'
+
         }
 
 
-        location.href = '../categories/categories.html'
 
     })
 })
