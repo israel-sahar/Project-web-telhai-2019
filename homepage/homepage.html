@@ -155,7 +155,7 @@
 
 
             <div class="row mt-2">
-                <div class="col-9">
+                <div class="col-8">
                     <a href="../homepage/homepage.html"><img class="mr-2" src="../7631d0c04c227a06508514677df8072e.png"
                             style="height:100px; width: 100px;float: left;" alt=""></a>
                     <p class="mt-3 mr-2" style="font-size: 20px"><span style="font-size: 30px">Global News </span> |
@@ -163,7 +163,7 @@
                         Current
                         News</p>
                 </div>
-                <div class="col-3 pt-4" style="height: 100px;">
+                <div id="connected_div" class="col-4 pt-4 " style="height: 100px;">
                     <!--Login & Register Div-->
                     <nav class="navbar navbar-expand-md navbar-light" style="display: none" id="LoginRegDiv">
                         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
@@ -204,20 +204,22 @@
                     <!--END - LOGIN DIV-->
 
                     <!--USER-CONNECTED DIV-->
-                    <div class="container-fluid" style="display: none" id="USER-CONNECTED-DIV">
+                <div id="connected_div" >
+                    <div  style="display: none" id="USER-CONNECTED-DIV">
                         <div class="row">
                             <img id="img" src="" alt="" style="height: 50px;width:50px;border-radius: 50px">
                             <p id="name" class="pt-3 pl-3"></p>
-
                         </div>
 
-
-                        <div class="row"><a id="link" href="../favorites/favorites.html">Favorites</a> |
-                            <a id="link" href="../profile/profile.html">My Profile</a> |
-                            <button id="SignOutBtn" type="button" class="btn btn-danger">Sign
-                                Out</button>
+                        <div class="row">
+                          <nav class="navBar justify-content-center">
+                                <a id="nav-link" href="../favorites/favorites.html">Favorites </a> |
+                                <a  id="nav-link" href="../profile/profile.html"> My Profile </a>
+                                <button id="SignOutBtn" type="button" class="btn btn-danger">SignOut</button>
+                          </nav>
                         </div>
                     </div>
+                  </div>
                     <!--END - USER-CONNECTED DIV-->
                 </div>
             </div>
@@ -256,7 +258,7 @@
                             <article class="card__article">
                                 <h2><a target="_blank" href="#" id="entertainment-1-header"></a></h2>
 
-                                <p id="entertainment-1-description">...</p>
+                                <p id="entertainment-1-description" class="descrip" >...</p>
                             </article>
                         </div>
 
@@ -300,7 +302,7 @@
                             <article class="card__article">
                                 <h2><a target="_blank" href="#" id="entertainment-2-header"></a></h2>
 
-                                <p id="entertainment-2-description">...</p>
+                                <p id="entertainment-2-description" class="descrip">...</p>
                             </article>
                         </div>
 
@@ -345,7 +347,7 @@
                             <article class="card__article">
                                 <h2><a target="_blank" href="#" id="entertainment-3-header"></a></h2>
 
-                                <p id="entertainment-3-description">...</p>
+                                <p id="entertainment-3-description" class="descrip">...</p>
                             </article>
                         </div>
 
@@ -369,8 +371,9 @@
                 <h2>Click to View More...</h2>
             </a>
         </div>
+        <hr>
         <!--******************************Health section************************************************************************-->
-        <h2>Health:</h2>
+        <h2 class="categoriesHeader">Health:</h2>
         <div class="row">
             <div class="col-sm-4" id="health-1">
                 <div class="wrapper">
@@ -397,7 +400,7 @@
                             <article class="card__article">
                                 <h2><a target="_blank" href="#" id="health-1-header"></a></h2>
 
-                                <p id="health-1-description">...</p>
+                                <p id="health-1-description" class="descrip">...</p>
                             </article>
                         </div>
 
@@ -441,7 +444,7 @@
                             <article class="card__article">
                                 <h2><a target="_blank" href="#" id="health-2-header"></a></h2>
 
-                                <p id="health-2-description">...</p>
+                                <p id="health-2-description" class="descrip">...</p>
                             </article>
                         </div>
 
@@ -486,7 +489,7 @@
                             <article class="card__article">
                                 <h2><a target="_blank" href="#" id="health-3-header"></a></h2>
 
-                                <p id="health-3-description">...</p>
+                                <p id="health-3-description" class="descrip">...</p>
                             </article>
                         </div>
 
@@ -509,9 +512,9 @@
                 <h2>Click to View More...</h2>
             </a>
         </div>
-
+        <hr>
         <!--******************************Science section************************************************************************-->
-        <h2>Science:</h2>
+        <h2 class="categoriesHeader">Science:</h2>
         <div class="row">
             <div class="col-sm-4" id="science-1">
                 <div class="wrapper">
@@ -538,7 +541,7 @@
                             <article class="card__article">
                                 <h2><a target="_blank" href="#" id="science-1-header"></a></h2>
 
-                                <p id="science-1-description">...</p>
+                                <p id="science-1-description" class="descrip">...</p>
                             </article>
                         </div>
 
@@ -583,7 +586,7 @@
                             <article class="card__article">
                                 <h2><a target="_blank" href="#" id="science-2-header"></a></h2>
 
-                                <p id="science-2-description">...</p>
+                                <p id="science-2-description" class="descrip">...</p>
                             </article>
                         </div>
 
@@ -628,7 +631,7 @@
                             <article class="card__article">
                                 <h2><a target="_blank" href="#" id="science-3-header"></a></h2>
 
-                                <p id="science-3-description">...</p>
+                                <p id="science-3-description" class="descrip">...</p>
                             </article>
                         </div>
 
@@ -651,9 +654,9 @@
                 <h2>Click to View More...</h2>
             </a>
         </div>
-
+        <hr>
         <!--******************************sports section************************************************************************-->
-        <h2>Sports:</h2>
+        <h2 class="categoriesHeader">Sports:</h2>
         <div class="row">
             <div class="col-sm-4" id="sports-1">
                 <div class="wrapper">
@@ -680,7 +683,7 @@
                             <article class="card__article">
                                 <h2><a target="_blank" href="#" id="sports-1-header"></a></h2>
 
-                                <p id="sports-1-description">...</p>
+                                <p id="sports-1-description" class="descrip">...</p>
                             </article>
                         </div>
 
@@ -724,7 +727,7 @@
                             <article class="card__article">
                                 <h2><a target="_blank" href="#" id="sports-2-header"></a></h2>
 
-                                <p id="sports-2-description">...</p>
+                                <p id="sports-2-description" class="descrip">...</p>
                             </article>
                         </div>
 
@@ -769,7 +772,7 @@
                             <article class="card__article">
                                 <h2><a target="_blank" href="#" id="sports-3-header"></a></h2>
 
-                                <p id="sports-3-description">...</p>
+                                <p id="sports-3-description" class="descrip">...</p>
                             </article>
                         </div>
 
@@ -793,9 +796,9 @@
             </a>
         </div>
 
-
+        <hr>
         <!--******************************Technology section************************************************************************-->
-        <h2>Technology:</h2>
+        <h2 class="categoriesHeader">Technology:</h2>
         <div class="row">
             <div class="col-sm-4" id="technology-1">
                 <div class="wrapper">
@@ -822,7 +825,7 @@
                             <article class="card__article">
                                 <h2><a target="_blank" href="#" id="technology-1-header"></a></h2>
 
-                                <p id="technology-1-description">...</p>
+                                <p id="technology-1-description" class="descrip">...</p>
                             </article>
                         </div>
 
@@ -866,7 +869,7 @@
                             <article class="card__article">
                                 <h2><a target="_blank" href="#" id="technology-2-header"></a></h2>
 
-                                <p id="technology-2-description">...</p>
+                                <p id="technology-2-description" class="descrip">...</p>
                             </article>
                         </div>
 
@@ -911,7 +914,7 @@
                             <article class="card__article">
                                 <h2><a target="_blank" href="#" id="technology-3-header"></a></h2>
 
-                                <p id="technology-3-description">...</p>
+                                <p id="technology-3-description" class="descrip">...</p>
                             </article>
                         </div>
 
@@ -934,9 +937,9 @@
                 <h2>Click to View More...</h2>
             </a>
         </div>
-
+        <hr>
         <!--******************************Business section************************************************************************-->
-        <h2>Business:</h2>
+        <h2 class="categoriesHeader">Business:</h2>
         <div class="row">
             <div class="col-sm-4" id="business-1">
                 <div class="wrapper">
@@ -963,7 +966,7 @@
                             <article class="card__article">
                                 <h2><a target="_blank" href="#" id="business-1-header"></a></h2>
 
-                                <p id="business-1-description">...</p>
+                                <p id="business-1-description" class="descrip">...</p>
                             </article>
                         </div>
 
@@ -1007,7 +1010,7 @@
                             <article class="card__article">
                                 <h2><a target="_blank" href="#" id="business-2-header"></a></h2>
 
-                                <p id="business-2-description">...</p>
+                                <p id="business-2-description" class="descrip">...</p>
                             </article>
                         </div>
 
@@ -1052,7 +1055,7 @@
                             <article class="card__article">
                                 <h2><a target="_blank" href="#" id="business-3-header"></a></h2>
 
-                                <p id="business-3-description">...</p>
+                                <p id="business-3-description" class="descrip">...</p>
                             </article>
                         </div>
 
@@ -1103,5 +1106,15 @@
     </div>
 
 </body>
+<footer >
+  <div class="container footerStyle" style="">
+
+
+  <h3>Powered By <a href="https://newsapi.org/">News API</a> </h3>
+  <hr style="color: white;">
+  Contact Us <a href="#">GlobalNews@ggg.com</a>
+  <p>All Rights Resereved to Sahar Israel & Raveh Elkabetz. <img src="../c.png" alt=""></p>
+  </div>
+</footer>
 
 </html>
