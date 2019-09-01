@@ -1,6 +1,6 @@
 $(document).ready(function () {
     databaseRef = firebase.database().ref()
-
+    var nicknamesRef = databaseRef.child('nicknames')
     firebase.auth().onAuthStateChanged(function (user) {
         if (user) {
             location.href = '../homepage/homepage.html'
@@ -13,6 +13,12 @@ $(document).ready(function () {
         // ...
     })
 
+    nicknamesRef.on('child_added', function (data) {
+        if ($('#NickNameInput').val() != '')
+            isValidnickname($("#NickNameInput").val())
+    });
+
+
     $("#NickNameInput").change(function () {
         isValidnickname($("#NickNameInput").val())
     })
@@ -23,7 +29,6 @@ $(document).ready(function () {
         $("#NickNameInput").removeClass("border-success")
         $('#taken').html("")
         var flag = 0
-        nicknamesRef = databaseRef.child('nicknames')
         nicknamesRef.once('value').then(function (snapshot) {
             if (snapshot.val() != null) {
                 snapshot.forEach(function (childSnapshot) {
