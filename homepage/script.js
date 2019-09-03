@@ -76,8 +76,6 @@ $(document).ready(function ($) {
 				type: "GET",
 				async: false,
 				success: function (data) {
-					console.log(data.articles)
-					console.log('3333');
 
 					for (j = 1; j <= 3 && j <= data.articles.length; j++) {
 
