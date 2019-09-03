@@ -82,7 +82,7 @@ $(document).ready(function ($) {
 						$("#" + Categories[cat_i] + "-" + j + "-date").text(data.articles[j - 1].publishedAt.slice(0, 10));
 						$("#" + Categories[cat_i] + "-" + j + "-header").text(data.articles[j - 1].title);
 						$("#" + Categories[cat_i] + "-" + j + "-header").attr('href', data.articles[j - 1].url);
-						if (data.articles[j - 1].description == null) {
+						if (data.articles[j - 1].description == null || data.articles[j - 1].description == '') {
 							$("#" + Categories[cat_i] + "-" + j + "-description").text("No Description.");
 						}
 						else

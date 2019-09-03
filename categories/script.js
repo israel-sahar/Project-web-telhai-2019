@@ -145,7 +145,7 @@ $(document).ready(function () {
           $("#a-" + k + "-date").text(data.articles[k].publishedAt.slice(0, 10));
           $("#a-" + k + "-header").text(data.articles[k].title);
           $("#a-" + k + "-header").attr('href', data.articles[k].url);
-          if (data.articles[k].description == null) {
+          if (data.articles[k].description == null || data.articles[k].description == '') {
             $("#a-" + k + "-description").text("No Description.");
           }
           else
