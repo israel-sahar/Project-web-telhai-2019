@@ -1,8 +1,6 @@
 $(document).ready(function () {
   var currentCategory = localStorage.getItem("category");
   var currentCountry = localStorage.getItem("country");
-  console.log(currentCategory);
-  console.log(currentCountry);
   var favoritesDatabaseRef
   var indx;
   var favoritesArray__ = []
@@ -86,7 +84,7 @@ $(document).ready(function () {
         for (var i = 0; i < numOfRowsWeNeed; i++) {
           html += rowStarting;
           for (var j = 0; j < 3; j++) {
-            if (indx + 1 == numberOfArticels) {
+            if (indx + 1 > numberOfArticels) {
               break;
             }
             html += '<div class="col-sm-4" id="a-' + indx + '"><div class="wrapper">' +
@@ -128,7 +126,7 @@ $(document).ready(function () {
         }
         $("#Appending_item").append(html);
 
-        for (k = 0; k <= indx; k++) {
+        for (k = 0; k < data.articles.length; k++) {
           if (favoritesArray__.indexOf(data.articles[k].url) != -1) {
             $("#a-" + k + "-plus").attr("src", "https://cdn1.iconfinder.com/data/icons/warnings-and-dangers/400/Warning-05-512.png")
           }
