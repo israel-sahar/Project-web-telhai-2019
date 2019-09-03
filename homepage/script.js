@@ -76,26 +76,33 @@ $(document).ready(function ($) {
 				type: "GET",
 				async: false,
 				success: function (data) {
-					for (j = 1; j <= 3; j++) {
-						if (favoritesArray__.indexOf(data.articles[j].url) != -1) {
-							$("#" + Categories[cat_i] + "-" + j + "-plus").attr("src", "https://cdn1.iconfinder.com/data/icons/warnings-and-dangers/400/Warning-05-512.png")
-						}
-						$("#" + Categories[cat_i] + "-" + j + "-img").attr("src", CategoriesPhotos[cat_i]);
-						if (data.articles[j].urlToImage)
-							$("#" + Categories[cat_i] + "-" + j + "-img").attr("src", data.articles[j].urlToImage);
-						$("#" + Categories[cat_i] + "-" + j + "-date").text(data.articles[j].publishedAt.slice(0, 10));
-						$("#" + Categories[cat_i] + "-" + j + "-header").text(data.articles[j].title);
-						$("#" + Categories[cat_i] + "-" + j + "-header").attr('href', data.articles[j].url);
-						if (data.articles[j].description == null) {
+					console.log(data.articles)
+					console.log('3333');
+
+					for (j = 1; j <= 3 && j <= data.articles.length; j++) {
+
+						$("#" + Categories[cat_i] + "-" + j + "-date").text(data.articles[j - 1].publishedAt.slice(0, 10));
+						$("#" + Categories[cat_i] + "-" + j + "-header").text(data.articles[j - 1].title);
+						$("#" + Categories[cat_i] + "-" + j + "-header").attr('href', data.articles[j - 1].url);
+						if (data.articles[j - 1].description == null) {
 							$("#" + Categories[cat_i] + "-" + j + "-description").text("No Description.");
 						}
 						else
-							$("#" + Categories[cat_i] + "-" + j + "-description").text(data.articles[j].description);
-						if (data.articles[j].author == null) {
+							$("#" + Categories[cat_i] + "-" + j + "-description").text(data.articles[j - 1].description);
+						if (data.articles[j - 1].author == null) {
 							$("#" + Categories[cat_i] + "-" + j + "-author").text("Anonymous");
 						}
 						else
-							$("#" + Categories[cat_i] + "-" + j + "-author").text(data.articles[j].author);
+							$("#" + Categories[cat_i] + "-" + j + "-author").text(data.articles[j - 1].author);
+						if (favoritesArray__.indexOf(data.articles[j - 1].url) != -1) {
+							$("#" + Categories[cat_i] + "-" + j + "-plus").attr("src", "https://cdn1.iconfinder.com/data/icons/warnings-and-dangers/400/Warning-05-512.png")
+						}
+						$("#" + Categories[cat_i] + "-" + j + "-img").attr("src", CategoriesPhotos[cat_i]);
+						if (data.articles[j - 1].urlToImage != null && data.articles[j - 1].urlToImage != "undefined")
+							$("#" + Categories[cat_i] + "-" + j + "-img").attr("src", data.articles[j - 1].urlToImage);
+						$("#" + Categories[cat_i] + "-" + j).css("opacity", "1");
+
+
 					}
 					$("#allArticles").show()
 
