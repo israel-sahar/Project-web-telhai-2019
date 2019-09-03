@@ -31,9 +31,9 @@ $(document).ready(function () {
       })
     }
     else {
-      $(".favoriteClick").hide()
       $("#LoginRegDiv").show()
       fillPage()
+      $(".favoriteClick").hide()
     }
     // User is signed out.
     // ...
@@ -128,7 +128,7 @@ $(document).ready(function () {
         }
         $("#Appending_item").append(html);
 
-        for (k = 0; k < indx; k++) {
+        for (k = 0; k <= indx; k++) {
           if (favoritesArray__.indexOf(data.articles[k].url) != -1) {
             $("#a-" + k + "-plus").attr("src", "https://cdn1.iconfinder.com/data/icons/warnings-and-dangers/400/Warning-05-512.png")
           }
